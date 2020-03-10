@@ -48,7 +48,7 @@ namespace PUCMinasTCC
             //        .Configure(tokenConfigurations);
             var tokenConfigurations = Configuration.GetSection(nameof(TokenConfigurations));
             services.Configure<TokenConfigurations>(tokenConfigurations).AddSingleton(tokenConfigurations.Get<TokenConfigurations>());
-            //services.AddSingleton(tokenConfigurations);
+            //services.AddSingleton(tokenConfigurations) ;
             //try
             //{
             //    Bootstrapper.Initialize(services, Configuration);
