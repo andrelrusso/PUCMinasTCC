@@ -1,0 +1,32 @@
+﻿@model AlterarSenhaModel
+@{
+    ViewData["Title"] = "Alterar Senha";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="AlterarSenha" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="col-sm-3">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-light">@ViewData["Title"]</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Login" class="control-label"></label>
+                    <input asp-for="Login" type="text" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Senha" class="control-label"></label>
+                    <input asp-for="Senha" type="password" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label asp-for="NovaSenha" class="control-label"></label>
+                    <input asp-for="NovaSenha" type="password" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmacaoSenha" class="control-label"></label>
+                    <input asp-for="ConfirmacaoSenha" type="password" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</form>

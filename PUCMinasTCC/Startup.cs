@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PUCMinasTCC.IoC;
 using PUCMinasTCC.Util.Util;
 using PUCMinasTCC.Utils;
 
@@ -49,14 +50,14 @@ namespace PUCMinasTCC
             var tokenConfigurations = Configuration.GetSection(nameof(TokenConfigurations));
             services.Configure<TokenConfigurations>(tokenConfigurations).AddSingleton(tokenConfigurations.Get<TokenConfigurations>());
             //services.AddSingleton(tokenConfigurations) ;
-            //try
-            //{
-            //    Bootstrapper.Initialize(services, Configuration);
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("Erro ao inicializar o Bootstrapper", ex);
-            //}
+            try
+            {
+                Bootstrapper.Initialize(services, Configuration);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao inicializar o Bootstrapper", ex);
+            }
 
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -66,7 +67,7 @@ namespace PUCMinasTCC
                     options.LogoutPath = "/Login/Logout";
                     options.Cookie = new CookieBuilder()
                     {
-                        Expiration = new TimeSpan(0, 2, 0)
+                        //Expiration = new TimeSpan(0, 2, 0)
                     };
                 });         
             services.AddSession(o =>

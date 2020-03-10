@@ -1,8 +1,39 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Usuario\_ListaEmpresas.cshtml" />
+    <Content Remove="Views\Usuario\_ListaItens.cshtml" />
+    <Content Remove="Views\Usuario\_ListaPerfis.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\fontawesome\js\all.js" />
+    <None Include="wwwroot\lib\fontawesome\js\all.min.js" />
+    <None Include="wwwroot\lib\fontawesome\js\brands.js" />
+    <None Include="wwwroot\lib\fontawesome\js\brands.min.js" />
+    <None Include="wwwroot\lib\fontawesome\js\fontawesome.js" />
+    <None Include="wwwroot\lib\fontawesome\js\fontawesome.min.js" />
+    <None Include="wwwroot\lib\fontawesome\js\regular.js" />
+    <None Include="wwwroot\lib\fontawesome\js\regular.min.js" />
+    <None Include="wwwroot\lib\fontawesome\js\solid.js" />
+    <None Include="wwwroot\lib\fontawesome\js\solid.min.js" />
+    <None Include="wwwroot\lib\fontawesome\js\v4-shims.js" />
+    <None Include="wwwroot\lib\fontawesome\js\v4-shims.min.js" />
+    <None Include="wwwroot\lib\fontawesome\sprites\brands.svg" />
+    <None Include="wwwroot\lib\fontawesome\sprites\regular.svg" />
+    <None Include="wwwroot\lib\fontawesome\sprites\solid.svg" />
+    <None Include="wwwroot\lib\fontawesome\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\lib\fontawesome\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\lib\fontawesome\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\lib\fontawesome\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\lib\fontawesome\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\lib\fontawesome\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\lib\sweetalert\sweetalert.min.js" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
@@ -10,6 +41,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PUCMinasTCC.Domain\PUCMinasTCC.Domain.csproj" />
+    <ProjectReference Include="..\PUCMinasTCC.Facade\PUCMinasTCC.Facade.csproj" />
+    <ProjectReference Include="..\PUCMinasTCC.IoC\PUCMinasTCC.IoC.csproj" />
     <ProjectReference Include="..\PUCMinasTCC.Util\PUCMinasTCC.Util.csproj" />
   </ItemGroup>
 

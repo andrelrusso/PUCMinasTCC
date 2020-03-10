@@ -1,5 +1,4 @@
 ﻿using PUCMinasTCC.Domain.Entity;
-using SICCA.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;

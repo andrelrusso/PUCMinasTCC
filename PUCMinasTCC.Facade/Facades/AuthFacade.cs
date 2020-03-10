@@ -4,7 +4,6 @@ using PUCMinasTCC.Domain.Enums;
 using PUCMinasTCC.Domain.Repository;
 using PUCMinasTCC.Facade.Interfaces;
 using PUCMinasTCC.Util.Util;
-using SICCA.Domain.Entity.AuthData;
 using System;
 using System.Collections.Generic;
 using System.Linq;

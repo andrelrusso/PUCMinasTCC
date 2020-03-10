@@ -1,0 +1,90 @@
+﻿@model LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@SharedValues.Title</title>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <style>
+
+        body {
+            background-image: url("../images/bc_login_6.jpg");
+            background-repeat: no-repeat;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px 30px 30px 30px;
+            margin: 20vh 30vh;
+            /*margin-top: 20vh;*/
+            background-color: rgba(255,255,255,0.6);
+            border-radius : 15px;
+        }
+
+            .form-signin .checkbox {
+                font-weight: 400;
+            }
+
+            .form-signin .form-control {
+                position: relative;
+                box-sizing: border-box;
+                height: auto;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+                .form-signin .form-control:focus {
+                    z-index: 2;
+                }
+
+            .form-signin input[type="email"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            .form-signin input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+    </style>
+</head>
+<body class="text-center">
+    <form asp-action="@nameof(LoginController.Login)" asp-route-returnUrl="@ViewBag.ReturnUrl" method="post" class="form-signin">
+        <h1 class="h3 mb-3 mt-2 font-weight-bold text-danger"><i class="fas fa-key mr-2"></i>@SharedValues.Title</h1>
+        <label for="Login" class="sr-only">Login</label>
+        <input asp-for="Login" type="text" placeholder="Login" required autofocus class="form-control" />
+        <span asp-validation-for="Login" class="text-danger"></span>
+        <label for="Senha" class="sr-only">Senha</label>
+        <input asp-for="Senha" type="password" placeholder="Senha" required class="form-control" />
+        <span asp-validation-for="Senha" class="text-danger"></span>
+        <button type="submit" class="btn btn-lg btn-primary btn-block">Entrar</button>
+    </form>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/sweetalert/sweetalert.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    @if (!string.IsNullOrEmpty(SharedValues.ErrorMessage))
+    {
+        <script type="text/javascript">
+            popupErro('@SharedValues.Title', @Html.Raw(Json.Serialize(SharedValues.ErrorMessage)));
+        </script>
+        SharedValues.ErrorMessage = null;
+    }
+</body>
+</html>

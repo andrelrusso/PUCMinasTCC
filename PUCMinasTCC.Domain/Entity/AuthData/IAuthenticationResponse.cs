@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SICCA.Domain.Entity.AuthData
+namespace PUCMinasTCC.Domain.Entity.AuthData
 {
     public interface IAuthenticationResponse
     {

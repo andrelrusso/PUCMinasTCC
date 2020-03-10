@@ -1,5 +1,5 @@
 ﻿
-using SICCA.Domain.Entity.AuthData;
+using PUCMinasTCC.Domain.Entity.AuthData;
 using System;
 using System.Collections.Generic;
 using System.Text;
