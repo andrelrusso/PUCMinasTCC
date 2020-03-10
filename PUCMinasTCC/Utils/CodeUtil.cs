@@ -9,7 +9,7 @@ namespace PUCMinasTCC.Utils
 {
     public class CodeUtil
     {
-        public static SelectList PopulaComboComEnum<T>() => PopulaComboComEnum(default(T));
+        public static SelectList PopulaComboComEnum<T>() =>  PopulaComboComEnum(default(T));
         public static SelectList PopulaComboComEnum<T>(T selectedItem)
         {
             var itens = GetEnumValue<T>().Select(r => new SelectListItem { Text = r.Value, Value = r.Key.ToString() }).ToList();
