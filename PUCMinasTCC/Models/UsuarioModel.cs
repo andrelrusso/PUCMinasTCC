@@ -11,7 +11,7 @@ namespace PUCMinasTCC.Models
         public SelectList Status { get; set; }
         public UsuarioModel()
         {
-            Filtro = new Usuario { Status = enumStatus.Todos };
+            Filtro = new Usuario { Status = enumStatus.Todos }; 
             Detalhe = new Usuario { Status = enumStatus.Ativo };
         }
     }
