@@ -1,6 +1,6 @@
-﻿@model UsuarioModel
+﻿@model NaoConformidadeModel
 @{
-    ViewData["Title"] = "Usuários";
+    ViewData["Title"] = "Não Conformidades";
 }
 <script defer src="~/js/Usuario.js"></script>
 <div class="card border-primary">
@@ -9,22 +9,22 @@
         <div class="row">
             <div class="col-sm-1">
                 <div class="form-group">
-                    <label asp-for="Filtro.IdUsuario" class="control-label"></label>
-                    <input asp-for="Filtro.IdUsuario" type="number" class="form-control" />
+                    <label asp-for="Filtro.IdNaoConformidade" class="control-label"></label>
+                    <input asp-for="Filtro.IdNaoConformidade" type="number" class="form-control" />
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
-                    <label asp-for="Filtro.Nome" class="control-label"></label>
-                    <input asp-for="Filtro.Nome" class="form-control" />
+                    <label asp-for="Filtro.DescricaoNaoConformidade" class="control-label"></label>
+                    <input asp-for="Filtro.DescricaoNaoConformidade" class="form-control" />
                 </div>
             </div>
      
            
             <div class="col-sm-2">
                 <div class="form-group">
-                    <label asp-for="Filtro.Status" class="control-label"></label>
-                    <select asp-for="Filtro.Status" asp-items="Model.Status" class="form-control"></select>
+                    <label asp-for="Filtro.CodStatus" class="control-label"></label>
+                    <select asp-for="Filtro.CodStatus" asp-items="Model.Status" class="form-control"></select>
                 </div>
             </div>
             <div class="col">

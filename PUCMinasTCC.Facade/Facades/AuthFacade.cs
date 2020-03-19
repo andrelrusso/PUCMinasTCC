@@ -24,7 +24,7 @@ namespace PUCMinasTCC.Facade.Facades
         {
             var authData = JsonConvert.DeserializeObject<AuthData>(userData.ToString());
 
-            if (authData.SystemCode == 0) throw new Exception("Código do sistema não informado");
+           //if (authData.SystemCode == 0) throw new Exception("Código do sistema não informado");
             if (authData.UserIdentity == null) throw new ArgumentNullException(nameof(IAuthData.UserIdentity));
             if (authData.KeyContent == null) throw new ArgumentNullException(nameof(IAuthData.KeyContent));
 

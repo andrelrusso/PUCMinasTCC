@@ -1,0 +1,44 @@
+﻿@model IncidenteModel
+@{
+    ViewData["Title"] = "Incidentes";
+}
+<script defer src="~/js/Usuario.js"></script>
+<div class="card border-primary">
+    <div class="card-header">@ViewData["Title"]</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label asp-for="Filtro.IdIncidente" class="control-label"></label>
+                    <input asp-for="Filtro.IdIncidente" type="number" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label asp-for="Filtro.DescricaoIncidente" class="control-label"></label>
+                    <input asp-for="Filtro.DescricaoIncidente" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label asp-for="NaoConformidades" class="control-label"></label>
+                    <select asp-for="IdNaoConformidadeFiltro" asp-items="@Model.NaoConformidades.ToSelectList(nameof(NaoConformidade.IdNaoConformidade), nameof(NaoConformidade.DescricaoNaoConformidade))" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label asp-for="Filtro.EstadoIncidente" class="control-label"></label>
+                    <select asp-for="Filtro.EstadoIncidente" asp-items="Model.Estado" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col">
+                <a asp-action="Detalhes" class="btn btn-success"><i class="fas fa-plus"></i>Adicionar</a>
+                <button type="button" class="btn btn-warning" onclick="Pesquisar('@Url.Action("Pesquisar")')"><i class="fas fa-search"></i> Pesquisar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="gridItems">
+    <partial name="_ListaItens" model="Model.Itens" />
+</div>
+

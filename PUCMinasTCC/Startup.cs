@@ -34,7 +34,7 @@ namespace PUCMinasTCC
             try
             {
                 if (string.IsNullOrEmpty(CryptoUtils.ReadKey()))
-                    CryptoUtils.WriteKey("PUCMINAS|TCC");
+                    CryptoUtils.WriteKey("TGS|SICCA");
             }
             catch (Exception ex)
             {
@@ -42,6 +42,8 @@ namespace PUCMinasTCC
             }
 
             services.AddSingleton(new SigningConfigurations());
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
             //var tokenConfigurations = new TokenConfigurations();
             //new ConfigureFromConfigurationOptions<TokenConfigurations>(
@@ -65,15 +67,16 @@ namespace PUCMinasTCC
                 {
                     options.LoginPath = "/Login/Login";
                     options.LogoutPath = "/Login/Logout";
-                    options.Cookie = new CookieBuilder()
-                    {
-                        //Expiration = new TimeSpan(0, 2, 0)
-                    };
-                });         
+                    options.ExpireTimeSpan = new TimeSpan(0, 2, 0);
+                });
             services.AddSession(o =>
             {
                 o.IdleTimeout = TimeSpan.FromMinutes(1);
             });
+
+
+            services.AddHttpContextAccessor(); 
+           // services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(20); options.Cookie.HttpOnly = true; }).AddDistributedMemoryCache();
 
             //services.AddMvc()
             //      .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)

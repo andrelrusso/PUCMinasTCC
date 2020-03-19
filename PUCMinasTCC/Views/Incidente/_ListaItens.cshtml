@@ -1,0 +1,42 @@
+﻿@model PagedList<Incidente>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Não Conformidade</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.CurrentItens != null)
+        {
+            foreach (var item in Model.CurrentItens)
+            {
+        <tr>
+            <td><a asp-action="Detalhes" asp-route-id="@item.IdIncidente" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
+            <td>@Html.DisplayFor(modelItem => item.IdIncidente)</td>
+            <td>@Html.DisplayFor(modelItem => item.DescricaoIncidente)</td>
+            <td>@Html.DisplayFor(modelItem => item.NaoConformidade)</td>
+
+            <td>
+                @if (item.EstadoIncidente == PUCMinasTCC.Domain.Enums.enumEstadoIncidente.Aberto)
+                {
+                    <span class="status text-success"><i class="fas fa-thumbs-up mr-5">Ativo</i></span>
+                }
+                else
+                {
+                    <span class="status text-danger"><i class="fas fa-thumbs-down">Inativo</i></span>
+                }
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@*@Html.Pagination(Model.PagedList, "Pesquisar('" + @Url.Action("Pesquisar", "Empresa") + "', #page)", "#page")*@
+<pagination paged-list="@Model" action-link="Pesquisar('@Url.Action("Pesquisar")', #page)" selector-replace="#page"></pagination>
+

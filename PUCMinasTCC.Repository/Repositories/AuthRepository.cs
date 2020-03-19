@@ -19,18 +19,18 @@ namespace PUCMinasTCC.Repository.Repositories
         {
             context.InitProcedure("SpLogarUsuario");
             context.AddParameter("Identidade", userName);
-            context.AddParameter("IdSistema", systemCode);
+            //context.AddParameter("IdSistema", systemCode);
             return await context.GetAsync<Usuario>();
         }
 
         public void LogarTentativaAcesso(string identidade, long idSistema, bool status, int? idUsuario = null, string erro = null)
         {
             if (string.IsNullOrWhiteSpace(identidade)) throw new ArgumentNullException(nameof(identidade));
-            if (idSistema == 0) throw new ArgumentNullException(nameof(idSistema));
+            //if (idSistema == 0) throw new ArgumentNullException(nameof(idSistema));
 
             context.InitProcedure("SpTentativasLogin");
             context.AddParameter("Identidade", identidade);
-            context.AddParameter("IdSistema", idSistema);
+            //context.AddParameter("IdSistema", idSistema);
             context.AddParameter("CodStatusTentativa", status);
             context.AddParameter("IdUsuario", idUsuario, p => p.HasValue);
             context.AddParameter("DescErro", erro, p => !string.IsNullOrWhiteSpace(p));

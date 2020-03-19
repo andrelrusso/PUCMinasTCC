@@ -57,13 +57,15 @@ namespace PUCMinasTCC.Controllers
                 var data = new AuthDataFromPassPhrase();
                 data.UserIdentity = model.Login;
                 data.KeyContent = model.Senha;
-                data.SystemCode = settings.IdSistema;
+                //data.SystemCode = settings.IdSistema;
 
                 var response = await authService.LogIn(JsonConvert.SerializeObject(data), settings.KeyCrypto);
                 if (response != null && response.Logged)
                 {
                     response.Token = TokenHelper.GenerateJwtToken(response.User.IdUsuario, tokenConfigurations, signingConfigurations);
+                    SharedValues.Session = SharedValues.Session ?? HttpContext.Session;
                     SharedValues.UsuarioLogado = response.User;
+                  
                     //Defina pelo menos um conjunto de claims...
                     var claims = new List<Claim>
                     {

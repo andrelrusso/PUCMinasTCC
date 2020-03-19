@@ -9,11 +9,5 @@ namespace PUCMinasTCC.Models
     {
         public string Login { get; set; }
         public string Senha { get; set; }
-    }
-
-    public class AlterarSenhaModel : LoginModel
-    {
-        public string NovaSenha { get; set; }
-        public string ConfirmacaoSenha { get; set; }
-    }
+    }    
 }

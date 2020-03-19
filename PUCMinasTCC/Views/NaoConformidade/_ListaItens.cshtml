@@ -1,11 +1,11 @@
-﻿@model PagedList<Usuario>
+﻿@model PagedList<NaoConformidade>
 
 <table class="table">
     <thead>
         <tr>
             <th></th>
             <th>Código</th>
-            <th>Nome</th>
+            <th>Descrição</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -15,11 +15,11 @@
             foreach (var item in Model.CurrentItens)
             {
                 <tr>
-                    <td><a asp-action="Detalhes" asp-route-id="@item.IdUsuario" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
-                    <td>@Html.DisplayFor(modelItem => item.IdUsuario)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td><a asp-action="Detalhes" asp-route-id="@item.IdNaoConformidade" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
+                    <td>@Html.DisplayFor(modelItem => item.IdNaoConformidade)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DescricaoNaoConformidade)</td>
                     <td>
-                        @if (item.Status == PUCMinasTCC.Domain.Enums.enumStatus.Ativo)
+                        @if (item.CodStatus == PUCMinasTCC.Domain.Enums.enumStatus.Ativo)
                         {
                             <span class="status text-success"><i class="fas fa-thumbs-up mr-5">Ativo</i></span>
                         }

@@ -1,0 +1,60 @@
+﻿@model NaoConformidadeModel
+@{
+    ViewData["Title"] = "Não Conformidades";
+}
+
+<h2>Detalhes</h2>
+<script defer src="~/js/Usuario.js"></script>
+
+<div class="container-fluid">
+    <form asp-action="Detalhes" method="post">
+        <input type="hidden" asp-for="Detalhe.IdNaoConformidade" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label asp-for="Detalhe.IdNaoConformidade" class="control-label"></label>
+                    <input asp-for="Detalhe.IdNaoConformidade" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-geral-tab" data-toggle="tab" href="#nav-geral" role="tab" aria-controls="nav-geral" aria-selected="true">Geral</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-geral" role="tabpanel" aria-labelledby="nav-geral-tab">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Detalhe.DescricaoNaoConformidade" class="control-label"></label>
+                            <input asp-for="Detalhe.DescricaoNaoConformidade" class="form-control" required />
+                            <span asp-validation-for="Detalhe.DescricaoNaoConformidade" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Status" class="control-label"></label>
+                            <select asp-for="Detalhe.CodStatus" asp-items="Model.Status" class="form-control" required></select>
+                            <span asp-validation-for="Detalhe.CodStatus" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <a asp-action="Index" class="btn btn-primary"><i class="fas fa-undo"></i>Voltar</a>
+                            <button type="submit" class="btn btn-warning">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

@@ -28,7 +28,7 @@ function Pesquisar(url, paginaAtual) {
             $('#gridItems').html(data);
         }).fail(function (xhr, error, status) {
             var msg = JSON.parse(xhr.responseText);
-            popupErro('SICCA', msg.Message);
+            popupErro('SQG', msg.Message);
         });
 }
 
@@ -37,7 +37,7 @@ function Vincular(url) {
     var idEmpresa = $('#IdEmpresaFiltro option:selected').val();
 
     if (idEmpresa == undefined || idEmpresa == 0) {
-        popupErro('SICCA', 'Selecione uma empresa para vincular!');
+        popupErro('SQG', 'Selecione uma empresa para vincular!');
         return;
     }
 
@@ -63,11 +63,11 @@ function Vincular(url) {
                 })
                 .fail(function (xhr, error, status) {
                     var msg = JSON.parse(xhr.responseText);
-                    popupErro('SICCA', msg.Message);
+                    popupErro('SQG', msg.Message);
                 });
         }).fail(function (xhr, error, status) {
             var msg = JSON.parse(xhr.responseText);
-            popupErro('SICCA', msg.Message);
+            popupErro('SQG', msg.Message);
         });
 }
 
@@ -94,12 +94,12 @@ function Desvincular(url, isUsuarioEmp) {
                 })
                 .fail(function (xhr, error, status) {
                     var msg = JSON.parse(xhr.responseText);
-                    popupErro('SICCA', msg.Message);
+                    popupErro('SQG', msg.Message);
                 });
 
         }).fail(function (xhr, error, status) {
             var msg = JSON.parse(xhr.responseText);
-            popupErro('SICCA', msg.Message);
+            popupErro('SQG', msg.Message);
         });
 }
 
@@ -109,7 +109,7 @@ function VincularPerfil(url) {
     var idPerfilSistema = $('#IdPerfilFiltro option:selected').val();
 
     if (idPerfilSistema == undefined || idPerfilSistema == 0) {
-        popupErro('SICCA', 'Selecione um Perfil para vincular!');
+        popupErro('SQG', 'Selecione um Perfil para vincular!');
         return;
     }
 
@@ -135,7 +135,7 @@ function VincularPerfil(url) {
             $('#IdSistemaFiltro').change(onChangeSistema);
         }).fail(function (xhr, error, status) {
             var msg = JSON.parse(xhr.responseText);
-            popupErro('SICCA', msg.Message);
+            popupErro('SQG', msg.Message);
         });
 }
 
@@ -159,7 +159,7 @@ function DesvincularPerfil(url, idPerfilUsuario) {
             $('#IdSistemaFiltro').change(onChangeSistema);
         }).fail(function (xhr, error, status) {
             var msg = JSON.parse(xhr.responseText);
-            popupErro('SICCA', msg.Message);
+            popupErro('SQG', msg.Message);
         });
 }
 

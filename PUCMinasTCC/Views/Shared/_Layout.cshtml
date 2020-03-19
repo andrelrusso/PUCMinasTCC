@@ -26,10 +26,8 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a class="navbar-brand" asp-area="" asp-action="Index" asp-controller="Home">@SharedValues.Title?.ToUpper()</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item"><a class="nav-link" asp-controller="Empresa" asp-action="Index">Empresas</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="Sistema" asp-action="Index">Sistemas</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="Perfil" asp-action="Index">Perfis</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="Acesso" asp-action="Index">Acessos</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Inicidente" asp-action="Index">Incidentes</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="NaoConformidade" asp-action="Index">Não Conformidades</a></li>
                 <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Index">Usuários</a></li>
             </ul>
             <a class="btn btn-warning mr-1" asp-controller="Login" asp-action="@nameof(LoginController.AlterarSenha)">@SharedValues.UsuarioLogado?.Nome<i class="ml-1 fas fa-user"></i></a>

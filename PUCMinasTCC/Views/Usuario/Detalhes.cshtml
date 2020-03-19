@@ -21,11 +21,6 @@
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-geral-tab" data-toggle="tab" href="#nav-geral" role="tab" aria-controls="nav-geral" aria-selected="true">Geral</a>
-                @if (Model.Detalhe.IdUsuario != 0)
-                {
-                    <a class="nav-item nav-link" id="nav-empresa-tab" data-toggle="tab" href="#nav-empresa" role="tab" aria-controls="nav-empresa" aria-selected="true">Empresas</a>
-                    <a class="nav-item nav-link" id="nav-perfil-tab" data-toggle="tab" href="#nav-perfil" role="tab" aria-controls="nav-perfil" aria-selected="true">Perfis</a>
-                }
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
@@ -76,25 +71,6 @@
                             <label asp-for="Status" class="control-label"></label>
                             <select asp-for="Detalhe.Status" asp-items="Model.Status" class="form-control" required></select>
                             <span asp-validation-for="Detalhe.Status" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="tab-pane fade" id="nav-empresa" role="tabpanel" aria-labelledby="nav-empresa-tab">
-                <div class="row">
-                    <div class="col">
-                        <div id="gridEmpresas" class="row">
-                            <partial name="_ListaEmpresas" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="nav-perfil" role="tabpanel" aria-labelledby="nav-perfil-tab">
-                <div class="row">
-                    <div class="col">
-                        <div id="gridPerfis" class="row">
-                            <partial name="_ListaPerfis" />
                         </div>
                     </div>
                 </div>
