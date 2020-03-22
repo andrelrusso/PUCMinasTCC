@@ -15,7 +15,7 @@ namespace PUCMinasTCC.Controllers
     [Authorize]
     public class BaseController : Controller
     {
-        protected const int PAGE_SIZE = 5;
+        protected const int PAGE_SIZE = 100;
         protected const string DESCRIPTION_ALL = "Todos";
 
         public void ShowErrorMessage(string message) => ShowErrorMessage(new Exception(message));

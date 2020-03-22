@@ -14,15 +14,15 @@ namespace PUCMinasTCC.Controllers
     public class UsuarioController : BaseController
     {
         //private readonly IEmpresaService empresaService;
-        private readonly IUsuarioFacade usuarioService;
+        private readonly IUsuarioFacade usuarioFacade;
         private readonly IAppSettings appSettings;
         //private IList<Empresa> empresas = null;
         public UsuarioController(//IEmpresaService empresaService,
-                                IUsuarioFacade usuarioService,
+                                IUsuarioFacade usuarioFacade,
                                 IAppSettings appSettings)
         {
             //this.empresaService = empresaService;
-            this.usuarioService = usuarioService;
+            this.usuarioFacade = usuarioFacade;
             this.appSettings = appSettings;
             //empresas = empresaService.ToListAsync(null).Result;
         }
@@ -31,7 +31,7 @@ namespace PUCMinasTCC.Controllers
             var model = new UsuarioModel();
            // model.Empresas = empresas.AddAllToList(nameof(Empresa.NomeFantasia));
             model.Status = CodeUtil.PopulaComboComEnum(model.Filtro.Status);
-            model.Itens = await usuarioService.ToListAsync(null).ToPagedListAsync(PAGE_SIZE, 1);
+            model.Itens = await usuarioFacade.ToListAsync(null).ToPagedListAsync(PAGE_SIZE, 1);
             return View(model);
         }
 
@@ -46,7 +46,7 @@ namespace PUCMinasTCC.Controllers
         /// <returns>Partial com a lista dos registros</returns>
         public async Task<IActionResult> Pesquisar(int i, string d, int? idps, int s, int? p, int pz = 5)
         {
-            var itens = await usuarioService.ToListAsync(new Usuario
+            var itens = await usuarioFacade.ToListAsync(new Usuario
             {
                 IdUsuario = i,
                 Nome = d,
@@ -64,7 +64,7 @@ namespace PUCMinasTCC.Controllers
 
             if (id.HasValue)
             {
-                model.Detalhe = await usuarioService.Get(id.Value);
+                model.Detalhe = await usuarioFacade.Get(id.Value);
                 if (model.Detalhe == null) return NotFound();
 
                 //await BuscarVinculos(model);
@@ -84,7 +84,7 @@ namespace PUCMinasTCC.Controllers
             try
             {
                 model.Detalhe.IdUsuarioOperacao = SharedValues.UsuarioLogado.IdUsuario;
-                usuarioService.Gerenciar(model.Detalhe);
+                usuarioFacade.Gerenciar(model.Detalhe);
                 ShowSuccessMessage("Registros processado com sucesso");
             }
             catch (Exception ex)
@@ -110,13 +110,13 @@ namespace PUCMinasTCC.Controllers
         //    return PartialView("_ListaEmpresas", model);
         //}
 
-        public async Task<IActionResult> ListaPerfis(int idPerfil, int idUsuario)
-        {
-            var model = new UsuarioModel();
-            model.Detalhe = await usuarioService.Get(idUsuario);
-           // await BuscarVinculos(model);
-            return PartialView("_ListaPerfis", model);
-        }
+        //public async Task<IActionResult> ListaPerfis(int idPerfil, int idUsuario)
+        //{
+        //    var model = new UsuarioModel();
+        //    model.Detalhe = await usuarioFacade.Get(idUsuario);
+        //   // await BuscarVinculos(model);
+        //    return PartialView("_ListaPerfis", model);
+        //}
 
         //[HttpPost]
         //public IActionResult VincularPerfil(PerfilUsuario value)

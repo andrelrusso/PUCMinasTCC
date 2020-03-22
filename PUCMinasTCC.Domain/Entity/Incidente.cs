@@ -1,5 +1,6 @@
 ﻿using PUCMinasTCC.Domain.Enums;
 using PUCMinasTCC.FrameworkDAO.Attributes;
+using System.ComponentModel;
 
 namespace PUCMinasTCC.Domain.Entity
 {
@@ -9,15 +10,18 @@ namespace PUCMinasTCC.Domain.Entity
         public int IdIncidente { get; set; }
 
         [Column("DescricaoIncidente")]
-        public string DescricaoIncidente { get; set; }
+        public string Descricao { get; set; }
 
-        [Column("IdNaoConformidade")]
-        public int IdNaoConformidade { get; set; }
+        //[Column("IdNaoConformidade")]
+        //public int? IdNaoConformidade { get; set; }
 
-        [Column("IdNaoConformidade")]
+        //[Column("IdNaoConformidade")]
+        [DisplayName("Não Conformidade")]
+        [EntityFromSameQuery]
         public NaoConformidade NaoConformidade  { get; set; }
 
         [Column("IdEstadoIncidente")]
+        [DisplayName("Estado")]
         public enumEstadoIncidente EstadoIncidente { get; set; }
     }
 }

@@ -6,6 +6,7 @@
             <th></th>
             <th>Código</th>
             <th>Descrição</th>
+            <th>Origem</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -14,26 +15,25 @@
         {
             foreach (var item in Model.CurrentItens)
             {
-                <tr>
-                    <td><a asp-action="Detalhes" asp-route-id="@item.IdNaoConformidade" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
-                    <td>@Html.DisplayFor(modelItem => item.IdNaoConformidade)</td>
-                    <td>@Html.DisplayFor(modelItem => item.DescricaoNaoConformidade)</td>
-                    <td>
-                        @if (item.CodStatus == PUCMinasTCC.Domain.Enums.enumStatus.Ativo)
-                        {
-                            <span class="status text-success"><i class="fas fa-thumbs-up mr-5">Ativo</i></span>
-                        }
-                        else
-                        {
-                            <span class="status text-danger"><i class="fas fa-thumbs-down">Inativo</i></span>
-                        }
-                    </td>
-                </tr>
+        <tr>
+            <td><a asp-action="Detalhes" asp-route-id="@item.IdNaoConformidade" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
+            <td>@Html.DisplayFor(modelItem => item.IdNaoConformidade)</td>
+            <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+            <td>@Html.DisplayFor(modelItem => item.OrigemNc)</td>
+            <td>
+                @if (item.Status == PUCMinasTCC.Domain.Enums.enumStatus.Ativo)
+                {
+                    <span class="status text-success"><i class="fas fa-thumbs-up mr-5">Ativo</i></span>
+                }
+                else
+                {
+                    <span class="status text-danger"><i class="fas fa-thumbs-down">Inativo</i></span>
+                }
+            </td>
+        </tr>
             }
         }
     </tbody>
 </table>
-
-@*@Html.Pagination(Model.PagedList, "Pesquisar('" + @Url.Action("Pesquisar", "Empresa") + "', #page)", "#page")*@
 <pagination paged-list="@Model" action-link="Pesquisar('@Url.Action("Pesquisar")', #page)" selector-replace="#page"></pagination>
 

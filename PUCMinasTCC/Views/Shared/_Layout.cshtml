@@ -24,9 +24,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" asp-area="" asp-action="Index" asp-controller="Home">@SharedValues.Title?.ToUpper()</a>
+            <a class="navbar-brand" asp-area="" asp-action="Index" asp-controller="Home">@SharedValues.TitleInitials?.ToUpper()</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item"><a class="nav-link" asp-controller="Inicidente" asp-action="Index">Incidentes</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Incidente" asp-action="Index">Incidentes</a></li>
                 <li class="nav-item"><a class="nav-link" asp-controller="NaoConformidade" asp-action="Index">Não Conformidades</a></li>
                 <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Index">Usuários</a></li>
             </ul>
@@ -44,7 +44,7 @@
     </div>
 
     <footer class="fixed-bottom bg-primary text-light">
-        <p>&copy; 2019 - SICCA</p>
+        <p>&copy; 2020 - SGQ</p>
     </footer>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -72,14 +72,14 @@
     @if (!string.IsNullOrEmpty(SharedValues.ErrorMessage))
     {
         <script type="text/javascript">
-            popupErro('@SharedValues.Title', @Html.Raw(Json.Serialize(SharedValues.ErrorMessage)));
+            popupErro('@SharedValues.TitleInitials', @Html.Raw(Json.Serialize(SharedValues.ErrorMessage)));
         </script>
         SharedValues.ErrorMessage = null;
     }
     @if (!string.IsNullOrEmpty(SharedValues.SuccessMessage))
     {
         <script type="text/javascript">
-            popupSuccess('@SharedValues.Title', @Html.Raw(Json.Serialize(SharedValues.SuccessMessage)));
+            popupSuccess('@SharedValues.TitleInitials', @Html.Raw(Json.Serialize(SharedValues.SuccessMessage)));
         </script>
         SharedValues.SuccessMessage = null;
     }

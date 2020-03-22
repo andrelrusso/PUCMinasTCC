@@ -42,7 +42,7 @@ namespace PUCMinasTCC
             }
 
             services.AddSingleton(new SigningConfigurations());
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
 
 
             //var tokenConfigurations = new TokenConfigurations();

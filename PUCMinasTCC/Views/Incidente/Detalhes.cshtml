@@ -1,10 +1,10 @@
 ﻿@model IncidenteModel
 @{
-    ViewData["Title"] = "Usuário";
+    ViewData["Title"] = "Incidentes";
 }
 
 <h2>Detalhes</h2>
-<script defer src="~/js/Usuario.js"></script>
+<script defer src="~/js/Incidente.js"></script>
 
 <div class="container-fluid">
     <form asp-action="Detalhes" method="post">
@@ -28,25 +28,16 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="Detalhe.DescricaoIncidente" class="control-label"></label>
-                            <input asp-for="Detalhe.DescricaoIncidente" class="form-control" required />
-                            <span asp-validation-for="Detalhe.DescricaoIncidente" class="text-danger"></span>
+                            <label asp-for="Detalhe.Descricao" class="control-label"></label>
+                            <input asp-for="Detalhe.Descricao" class="form-control" required />
+                            <span asp-validation-for="Detalhe.Descricao" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="Detalhe.NaoConformidade.DescricaoNaoConformidade" class="control-label"></label>
-                            <input asp-for="Detalhe.NaoConformidade.DescricaoNaoConformidade" class="form-control" required />
-                            <span asp-validation-for="Detalhe.NaoConformidade.DescricaoNaoConformidade" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label asp-for="Estado" class="control-label"></label>
-                            <select asp-for="Detalhe.EstadoIncidente" asp-items="Model.Estado" class="form-control" required></select>
-                            <span asp-validation-for="Detalhe.EstadoIncidente" class="text-danger"></span>
+                            <label asp-for="NaoConformidades" class="control-label"></label>
+                            <select asp-for="Detalhe.NaoConformidade.IdNaoConformidade" asp-items="@Model.NaoConformidades.ToSelectList(nameof(NaoConformidade.IdNaoConformidade), nameof(NaoConformidade.Descricao))" class="form-control" required></select>
+                            <span asp-validation-for="Detalhe.NaoConformidade.IdNaoConformidade" class="text-danger"></span>
                         </div>
                     </div>
                 </div>

@@ -13,18 +13,15 @@ namespace PUCMinasTCC.IoC
         public static void Initialize(IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IDbContext>(new DataContext(configuration.GetConnectionString("Database")));
-            //services.AddTransient<IEmpresaService, EmpresaService>();
-            //services.AddTransient<ISistemaService, SistemaService>();
-            //services.AddTransient<IPerfilService, PerfilService>();
-            //services.AddTransient<IAcessoService, AcessoService>();
             services.AddTransient<IUsuarioFacade, UsuarioFacade>();
             services.AddTransient<IAuthFacade, AuthFacade>();
+            services.AddTransient<IIncidenteFacade, IncidenteFacade>();
+            services.AddTransient<INaoConformidadeFacade, NaoConformidadeFacade>();
+
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
-            //services.AddTransient<IAcessoRepository, AcessoRepository>();
-            //services.AddTransient<IEmpresaRepository, EmpresaRepository>();
-            //services.AddTransient<ISistemaRepository, SistemaRepository>();
-            //services.AddTransient<IPerfilRepository, PerfilRepository>();
+            services.AddTransient<IIncidenteRepository, IncidenteRepository>();
+            services.AddTransient<INaoConformidadeRepository, NaoConformidadeRepository>();
             services.AddSingleton<IAppSettings, AppSettings>();
         }
     }

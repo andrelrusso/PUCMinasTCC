@@ -26,7 +26,7 @@ namespace PUCMinasTCC.Facade.Facades
             {
                 if (!Helper.IsCPF(value.CPF.ToString()))
                     throw new Exception("CPF inválido");
-                value.DescSenha = CryptoUtils.Encrypt("*TGS123*", appSettings.KeyCrypto);
+                value.DescSenha = CryptoUtils.Encrypt("1234", appSettings.KeyCrypto);
             }
             usuarioRepository.Gerenciar(value);
         }

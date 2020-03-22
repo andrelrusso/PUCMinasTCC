@@ -28,16 +28,23 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="Detalhe.DescricaoNaoConformidade" class="control-label"></label>
-                            <input asp-for="Detalhe.DescricaoNaoConformidade" class="form-control" required />
-                            <span asp-validation-for="Detalhe.DescricaoNaoConformidade" class="text-danger"></span>
+                            <label asp-for="Detalhe.Descricao" class="control-label"></label>
+                            <input asp-for="Detalhe.Descricao" class="form-control" required />
+                            <span asp-validation-for="Detalhe.Descricao" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="OrigemNc" class="control-label"></label>
+                            <select asp-for="Detalhe.OrigemNc" asp-items="Model.OrigemNc" class="form-control" required></select>
+                            <span asp-validation-for="Detalhe.OrigemNc" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label asp-for="Status" class="control-label"></label>
-                            <select asp-for="Detalhe.CodStatus" asp-items="Model.Status" class="form-control" required></select>
-                            <span asp-validation-for="Detalhe.CodStatus" class="text-danger"></span>
+                            <select asp-for="Detalhe.Status" asp-items="Model.Status" class="form-control" required></select>
+                            <span asp-validation-for="Detalhe.Status" class="text-danger"></span>
                         </div>
                     </div>
                 </div>

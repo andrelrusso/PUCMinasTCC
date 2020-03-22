@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using PUCMinasTCC.Domain.Entity;
+using PUCMinasTCC.Domain.Enums;
 
 namespace PUCMinasTCC.Models
 {
@@ -7,11 +8,12 @@ namespace PUCMinasTCC.Models
     {
         //public int IdNaoConformidade { get; set; }
      
+        public SelectList OrigemNc { get; set; }
         public SelectList Status { get; set; }
         public NaoConformidadeModel()
         {
-            Filtro = new NaoConformidade { };
-            Detalhe = new NaoConformidade { };
+            Filtro = new NaoConformidade { Status = enumStatus.Todos , OrigemNc = enumOrigemNC.Todas };
+            Detalhe = new NaoConformidade { Status = enumStatus.Ativo };
         }
     }
 }

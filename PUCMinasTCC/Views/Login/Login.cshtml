@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@SharedValues.Title</title>
+    <title>@SharedValues.Title </title>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
@@ -64,7 +64,7 @@
 </head>
 <body class="text-center">
     <form asp-action="@nameof(LoginController.Login)" asp-route-returnUrl="@ViewBag.ReturnUrl" method="post" class="form-signin">
-        <h1 class="h3 mb-3 mt-2 font-weight-bold text-danger"><i class="fas fa-key mr-2"></i>@SharedValues.Title</h1>
+        <h1 class="h3 mb-3 mt-2 font-weight-bold text-danger"><i class="fas fa-key mr-2"></i>@SharedValues.TitleInitials</h1>
         <label for="Login" class="sr-only">Login</label>
         <input asp-for="Login" type="text" placeholder="Login" required autofocus class="form-control" />
         <span asp-validation-for="Login" class="text-danger"></span>
@@ -82,7 +82,7 @@
     @if (!string.IsNullOrEmpty(SharedValues.ErrorMessage))
     {
         <script type="text/javascript">
-            popupErro('@SharedValues.Title', @Html.Raw(Json.Serialize(SharedValues.ErrorMessage)));
+            popupErro('@SharedValues.TitleInitials', @Html.Raw(Json.Serialize(SharedValues.ErrorMessage)));
         </script>
         SharedValues.ErrorMessage = null;
     }

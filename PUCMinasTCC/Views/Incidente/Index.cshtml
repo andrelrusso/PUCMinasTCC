@@ -7,7 +7,7 @@
     <div class="card-header">@ViewData["Title"]</div>
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-1">
+            <div class="col-sm-1" >
                 <div class="form-group">
                     <label asp-for="Filtro.IdIncidente" class="control-label"></label>
                     <input asp-for="Filtro.IdIncidente" type="number" class="form-control" />
@@ -15,14 +15,14 @@
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
-                    <label asp-for="Filtro.DescricaoIncidente" class="control-label"></label>
-                    <input asp-for="Filtro.DescricaoIncidente" class="form-control" />
+                    <label asp-for="Filtro.Descricao" class="control-label"></label>
+                    <input asp-for="Filtro.Descricao" class="form-control" />
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
                     <label asp-for="NaoConformidades" class="control-label"></label>
-                    <select asp-for="IdNaoConformidadeFiltro" asp-items="@Model.NaoConformidades.ToSelectList(nameof(NaoConformidade.IdNaoConformidade), nameof(NaoConformidade.DescricaoNaoConformidade))" class="form-control"></select>
+                    <select asp-for="IdNaoConformidadeFiltro" asp-items="@Model.NaoConformidades.ToSelectList(nameof(NaoConformidade.IdNaoConformidade), nameof(NaoConformidade.Descricao))" class="form-control"></select>
                 </div>
             </div>
             <div class="col-sm-2">

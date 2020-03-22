@@ -11,7 +11,8 @@ namespace PUCMinasTCC
         public const string EMPRESA_ATIVA = "EMPRESA_ATIVA";
         public const string USUARIO_LOGADO = "USUARIO_LOGADO";
 
-        public static string Title = "SQG";
+        public static string Title = "Sistema de Gestão da Qualidade";
+        public static string TitleInitials = "SQG";
         public static ISession Session { get; set; }
 
         public static string ErrorMessage
