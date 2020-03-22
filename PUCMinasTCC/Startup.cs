@@ -42,7 +42,12 @@ namespace PUCMinasTCC
             }
 
             services.AddSingleton(new SigningConfigurations());
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //var accessor = Configuration.GetSection(nameof(HttpContextAccessor));
+            //SharedValues.SetHttpContextAccessor(accessor);
+            //var accessor = serviceProvider.GetService<IHttpContextAccessor>()
+             //    MyStaticHelperClass.SetHttpContextAccessor(accessor);
+
 
 
             //var tokenConfigurations = new TokenConfigurations();
@@ -75,7 +80,7 @@ namespace PUCMinasTCC
             });
 
 
-            services.AddHttpContextAccessor(); 
+            //services.AddHttpContextAccessor(); 
            // services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(20); options.Cookie.HttpOnly = true; }).AddDistributedMemoryCache();
 
             //services.AddMvc()

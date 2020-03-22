@@ -18,16 +18,21 @@ namespace PUCMinasTCC.Controllers
         protected const int PAGE_SIZE = 100;
         protected const string DESCRIPTION_ALL = "Todos";
 
+        public BaseController(IHttpContextAccessor httpContextAccessor)
+        {
+            SharedValues.Session = httpContextAccessor.HttpContext.Session;
+        }
+
         public void ShowErrorMessage(string message) => ShowErrorMessage(new Exception(message));
         public void ShowErrorMessage(Exception ex)
         {
-            SharedValues.Session = SharedValues.Session ?? HttpContext.Session;
+            //SharedValues.Session = SharedValues.Session ?? HttpContext.Session;
             SharedValues.ErrorMessage = ex.Message;
         }
 
         public void ShowSuccessMessage(string message)
         {
-            SharedValues.Session = SharedValues.Session ?? HttpContext.Session;
+            //SharedValues.Session = SharedValues.Session ?? HttpContext.Session;
             SharedValues.SuccessMessage = message;
         }
     }

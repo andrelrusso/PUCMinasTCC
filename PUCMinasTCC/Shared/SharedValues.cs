@@ -15,6 +15,13 @@ namespace PUCMinasTCC
         public static string TitleInitials = "SQG";
         public static ISession Session { get; set; }
 
+        //private static IHttpContextAccessor httpContextAccessor;
+        //public static void SetHttpContextAccessor(IHttpContextAccessor accessor)
+        //{
+        //    httpContextAccessor = accessor;
+        //    Session = httpContextAccessor.HttpContext.Session;
+        //}
+
         public static string ErrorMessage
         {
             get => Session?.GetString(MSG_ERROR);

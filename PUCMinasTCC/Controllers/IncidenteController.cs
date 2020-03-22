@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PUCMinasTCC.Domain.Entity;
 using PUCMinasTCC.Domain.Enums;
@@ -15,7 +16,7 @@ namespace PUCMinasTCC.Controllers
     {
         private readonly IIncidenteFacade incidenteFacade;
         private IList<NaoConformidade> naoConformidades = null;
-        public IncidenteController(IIncidenteFacade incidenteFacade, INaoConformidadeFacade naoConformidadeFacade)
+        public IncidenteController(IIncidenteFacade incidenteFacade, INaoConformidadeFacade naoConformidadeFacade, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             this.incidenteFacade = incidenteFacade;
             naoConformidades = naoConformidadeFacade.ToListAsync(null).Result;
@@ -27,7 +28,7 @@ namespace PUCMinasTCC.Controllers
             {
                 Itens = await incidenteFacade.ToListAsync(null).ToPagedListAsync(PAGE_SIZE, 1)
             };
-            //model.Estado = CodeUtil.PopulaComboComEnum(model.Detalhe.EstadoIncidente);
+            model.Estado = CodeUtil.PopulaComboComEnum(model.Detalhe.EstadoIncidente);
             model.NaoConformidades = naoConformidades.AddAllToList(nameof(NaoConformidade.Descricao));
             return View(model);
         }
@@ -74,6 +75,7 @@ namespace PUCMinasTCC.Controllers
         public IActionResult Detalhes(IncidenteModel model)
         {
             //model.Estado = CodeUtil.PopulaComboComEnum(model.Detalhe.EstadoIncidente, enumEstadoIncidente.Todos);
+            model.NaoConformidades = naoConformidades.AddAllToList(nameof(NaoConformidade.Descricao));
             if (!ModelState.IsValid)
             {
                 return View(model);

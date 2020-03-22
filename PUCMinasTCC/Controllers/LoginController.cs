@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PUCMinasTCC.Domain.Entity.AuthData;
@@ -20,7 +21,7 @@ namespace PUCMinasTCC.Controllers
         private readonly IAuthFacade authService;
         private readonly IAppSettings settings;
         public LoginController(IAuthFacade authService,
-                                IAppSettings settings)
+                                IAppSettings settings, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             this.authService = authService;
             this.settings = settings;
@@ -65,6 +66,8 @@ namespace PUCMinasTCC.Controllers
                     response.Token = TokenHelper.GenerateJwtToken(response.User.IdUsuario, tokenConfigurations, signingConfigurations);
                     SharedValues.Session = SharedValues.Session ?? HttpContext.Session;
                     SharedValues.UsuarioLogado = response.User;
+                    SharedValues.SuccessMessage = string.Empty;
+                    SharedValues.ErrorMessage = string.Empty;
                   
                     //Defina pelo menos um conjunto de claims...
                     var claims = new List<Claim>

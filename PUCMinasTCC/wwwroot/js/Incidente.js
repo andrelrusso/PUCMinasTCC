@@ -1,9 +1,9 @@
 ﻿
 function Pesquisar(url, paginaAtual) {
     var id = $('#Filtro_IdIncidente').val();
-    var descricao = $('#Filtro_DescricaoIncidente').val();
+    var descricao = $('#Filtro_Descricao').val();
     var idNaoConformidade = $('#IdNaoConformidadeFiltro option:selected').val();
-    var estado = $('#Filtro_Estado option:selected').val();
+    var estado = $('#Filtro_EstadoIncidente option:selected').val();
 
     if (id == '') id = 0;
 

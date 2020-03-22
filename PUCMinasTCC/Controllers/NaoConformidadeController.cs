@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PUCMinasTCC.Domain.Entity;
 using PUCMinasTCC.Domain.Enums;
@@ -15,7 +16,7 @@ namespace PUCMinasTCC.Controllers
     {
         private readonly INaoConformidadeFacade naoConformidadeFacade;
 
-        public NaoConformidadeController(INaoConformidadeFacade naoConformidadeFacade)
+        public NaoConformidadeController(INaoConformidadeFacade naoConformidadeFacade, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             this.naoConformidadeFacade = naoConformidadeFacade;
         }

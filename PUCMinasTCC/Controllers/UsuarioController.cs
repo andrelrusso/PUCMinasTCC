@@ -8,6 +8,7 @@ using PUCMinasTCC.Models;
 using PUCMinasTCC.Utils;
 using PUCMinasTCC.Domain.Enums;
 using PUCMinasTCC.Domain.Entity;
+using Microsoft.AspNetCore.Http;
 
 namespace PUCMinasTCC.Controllers
 {
@@ -19,7 +20,8 @@ namespace PUCMinasTCC.Controllers
         //private IList<Empresa> empresas = null;
         public UsuarioController(//IEmpresaService empresaService,
                                 IUsuarioFacade usuarioFacade,
-                                IAppSettings appSettings)
+                                IAppSettings appSettings, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
+       
         {
             //this.empresaService = empresaService;
             this.usuarioFacade = usuarioFacade;
