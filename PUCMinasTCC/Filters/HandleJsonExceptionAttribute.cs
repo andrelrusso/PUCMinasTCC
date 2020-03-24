@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Net;
 using Newtonsoft.Json;
+using PUCMinasTCC.Controllers;
 
 namespace PUCMinasTCC.Filters
 {
@@ -45,7 +46,13 @@ namespace PUCMinasTCC.Filters
 
         public void OnResultExecuting(ResultExecutingContext context)
         {
-
+            
+            if (SharedValues.UsuarioLogado == null && !(context.Controller is LoginController))
+            {
+                var response = context.HttpContext.Response;
+                var request = context.HttpContext.Request;
+                response.Redirect($"/Login/Login?returnUrl={request.Path.ToString()}");
+            }
         }
     }
 }

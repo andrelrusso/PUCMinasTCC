@@ -14,4 +14,4 @@ function Pesquisar(url, paginaAtual) {
             var msg = JSON.parse(xhr.responseText);
             popupErro('SQG', msg.Message);
         });
-}
+}  
