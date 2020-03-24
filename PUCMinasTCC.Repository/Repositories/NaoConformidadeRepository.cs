@@ -24,6 +24,7 @@ namespace PUCMinasTCC.Repository.Repositories
             context.AddParameter("DescricaoNaoConformidade", value.Descricao, p => !string.IsNullOrWhiteSpace(p));
             context.AddParameter("IdOrigemNc", (int)value.OrigemNc, p => p != (int)enumOrigemNC.Todas);
             context.AddParameter("CodStatus", (int)value.Status);
+            context.AddParameter("IdUsuarioOperacao", value.IdUsuarioOperacao);
             value.IdNaoConformidade = context.ExecuteScalar<int>();
         }
 

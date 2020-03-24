@@ -8,6 +8,7 @@
             <th>Descrição</th>
             <th>Não Conformidade</th>
             <th>Estado</th>
+            <th>Usuário Cadastro</th>
         </tr>
     </thead>
     <tbody>
@@ -39,6 +40,7 @@
                     <span class="status text-danger"><i class="fas fa-thumbs-up mr-5">Fechado</i></span>
                 }
             </td>
+            <td>@Html.DisplayFor(modelItem => item.NomeUsuario)</td>
         </tr>
             }
         }

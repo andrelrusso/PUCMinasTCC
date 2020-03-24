@@ -71,12 +71,12 @@ namespace PUCMinasTCC
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/Login/Login";
-                    options.LogoutPath = "/Login/Logout";
-                    options.ExpireTimeSpan = new TimeSpan(0, 2, 0);
+                    //options.LogoutPath = "/Login/Logout";
+                    options.ExpireTimeSpan = new TimeSpan(0,10, 0);
                 });
             services.AddSession(o =>
             {
-                o.IdleTimeout = TimeSpan.FromMinutes(1);
+                o.IdleTimeout = TimeSpan.FromMinutes(10);
             });
 
 
