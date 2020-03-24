@@ -1,0 +1,32 @@
+﻿@model DespesaModel
+@{
+    ViewData["Title"] = "Despesa";
+}
+<script defer src="~/js/Usuario.js"></script>
+<div class="card border-primary">
+    <div class="card-header">@ViewData["Title"]</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label asp-for="Filtro.IdDespesa" class="control-label"></label>
+                    <input asp-for="Filtro.IdDespesa" type="number" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label asp-for="Filtro.CNPJ" class="control-label"></label>
+                    <input asp-for="Filtro.CNPJ" class="form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <a asp-action="Detalhes" class="btn btn-success"><i class="fas fa-plus"></i>Adicionar</a>
+                <button type="button" class="btn btn-warning" onclick="Pesquisar('@Url.Action("Pesquisar")')"><i class="fas fa-search"></i> Pesquisar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="gridItems">
+    <partial name="_ListaItens" model="Model.Itens" />
+</div>
+
