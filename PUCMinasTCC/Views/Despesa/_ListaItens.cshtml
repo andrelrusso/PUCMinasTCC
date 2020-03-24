@@ -1,0 +1,28 @@
+﻿@model PagedList<Despesa>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>CNPJ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.CurrentItens != null)
+        {
+            foreach (var item in Model.CurrentItens)
+            {
+                <tr>
+                    <td><a asp-action="Detalhes" asp-route-id="@item.IdDespesa" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
+                    <td>@Html.DisplayFor(modelItem => item.IdDespesa)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CNPJ)</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@*@Html.Pagination(Model.PagedList, "Pesquisar('" + @Url.Action("Pesquisar", "Empresa") + "', #page)", "#page")*@
+<pagination paged-list="@Model" action-link="Pesquisar('@Url.Action("Pesquisar")', #page)" selector-replace="#page"></pagination>
+
