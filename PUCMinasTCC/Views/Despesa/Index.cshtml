@@ -31,11 +31,11 @@
                 <div class="col">
                     @if (SharedValues.UsuarioLogado != null)
                     {
-                        <a asp-action="Detalhes" class="btn btn-success"><i class="fas fa-plus"></i>Adicionar</a>
+                    <a asp-action="Detalhes" class="btn btn-success"><i class="fas fa-plus"></i>Adicionar</a>
                     }
                     else
                     {
-                        <a asp-action="Detalhes" class="btn btn-success disabled"><i class="fas fa-plus"></i>Adicionar</a>
+                    <a asp-action="Detalhes" class="btn btn-success disabled"><i class="fas fa-plus"></i>Adicionar</a>
 
                     }
 
@@ -45,7 +45,8 @@
             </div>
         </div>
     </div>
-    <div id="gridItems">
-        <partial name="_ListaItens" model="Model.Itens" />
-    </div>
+</div>
+<div id="gridItems">
+    <partial name="_ListaItens" model="Model.Itens" />
+</div>
 
