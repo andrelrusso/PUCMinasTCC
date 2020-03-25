@@ -4,8 +4,13 @@
     <thead>
         <tr>
             <th></th>
-            <th>ID</th>
+            <th>Id</th>
+            <th>Mês/Ano</th>
             <th>CNPJ</th>
+            <th>ValorEmpenhado</th>
+            <th>ValorLiquidado</th>
+            <th>ValorPago</th>
+            <th>ValorRestosAPagarPagos</th>
         </tr>
     </thead>
     <tbody>
@@ -14,15 +19,28 @@
             foreach (var item in Model.CurrentItens)
             {
                 <tr>
-                    <td><a asp-action="Detalhes" asp-route-id="@item.IdDespesa" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
+                    <td>
+                        @if (SharedValues.UsuarioLogado != null)
+                        {
+                            <a asp-action="Detalhes" asp-route-id="@item.IdDespesa" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Detalhes" asp-route-id="@item.IdDespesa" class="btn btn-info disabled" aria-disabled="true"><i class="fas fa-edit"></i>Editar</a>
+                        }
+                    </td>
                     <td>@Html.DisplayFor(modelItem => item.IdDespesa)</td>
+                    <td>@Html.DisplayFor(modelItem => item.MesAno)</td>
                     <td>@Html.DisplayFor(modelItem => item.CNPJ)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ValorEmpenhado)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ValorLiquidado)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ValorPago)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ValorRestosAPagarPagos)</td>
                 </tr>
             }
         }
     </tbody>
 </table>
 
-@*@Html.Pagination(Model.PagedList, "Pesquisar('" + @Url.Action("Pesquisar", "Empresa") + "', #page)", "#page")*@
 <pagination paged-list="@Model" action-link="Pesquisar('@Url.Action("Pesquisar")', #page)" selector-replace="#page"></pagination>
 

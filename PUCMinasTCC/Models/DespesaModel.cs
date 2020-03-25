@@ -6,12 +6,14 @@ namespace PUCMinasTCC.Models
 {
     public class DespesaModel : BaseModel<Despesa>
     {
-        public int IdEmpresaFiltro { get; set; }
+        //public int IdDespesaFiltro { get; set; }
 
-        public SelectList Status { get; set; }
+        //public string MesAnoFiltro { get; set; }
+        //public int IdNaoConformidadeFiltro { get; set; }
         public DespesaModel()
         {
-            Filtro = new Despesa {}; 
+            Filtro = new Despesa { };
+            Detalhe = new Despesa { };
         }
     }
 }

@@ -8,7 +8,6 @@ namespace PUCMinasTCC
     {
         public const string MSG_ERROR = "MSG_ERROR";
         public const string MSG_SUCCESS = "MSG_SUCCESS";
-        public const string EMPRESA_ATIVA = "EMPRESA_ATIVA";
         public const string USUARIO_LOGADO = "USUARIO_LOGADO";
 
         public static string Title = "Sistema de Gestão da Qualidade";

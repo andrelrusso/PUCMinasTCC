@@ -8,30 +8,24 @@ using PUCMinasTCC.Models;
 using PUCMinasTCC.Utils;
 using PUCMinasTCC.Domain.Enums;
 using PUCMinasTCC.Domain.Entity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PUCMinasTCC.Controllers
 {
     public class DespesaController : BaseController
     {
-        //private readonly IEmpresaService empresaService;
-        private readonly IDespesaFacade despesaService;
-        private readonly IAppSettings appSettings;
-        //private IList<Empresa> empresas = null;
-        public DespesaController(//IEmpresaService empresaService,
-                                IDespesaFacade despesaService,
-                                IAppSettings appSettings)
+        private readonly IDespesaFacade despesaFacade;
+        public DespesaController(
+                                IDespesaFacade despesaFacade, IHttpContextAccessor httpContextAccessor):base(httpContextAccessor)
         {
-            //this.empresaService = empresaService;
-            this.despesaService = despesaService;
-            this.appSettings = appSettings;
-            //empresas = empresaService.ToListAsync(null).Result;
+            this.despesaFacade = despesaFacade;
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var model = new DespesaModel();
-           // model.Empresas = empresas.AddAllToList(nameof(Empresa.NomeFantasia));
-            //model.Status = CodeUtil.PopulaComboComEnum(model.Filtro.Status);
-            model.Itens = await despesaService.ToListAsync(null).ToPagedListAsync(PAGE_SIZE, 1);
+            model.Itens = await despesaFacade.ToListAsync(null).ToPagedListAsync(PAGE_SIZE, 1);
             return View(model);
         }
 
@@ -44,28 +38,28 @@ namespace PUCMinasTCC.Controllers
         /// <param name="p">Pagina atual</param>
         /// <param name="pz">Tamanho da página</param>
         /// <returns>Partial com a lista dos registros</returns>
-        public async Task<IActionResult> Pesquisar(int i, string d, int? idps, int s, int? p, int pz = 5)
+        [AllowAnonymous]
+        public async Task<IActionResult> Pesquisar(int i, string m, string c, int? p, int pz = 5)
         {
-            var itens = await despesaService.ToListAsync(new Despesa
+            var itens = await despesaFacade.ToListAsync(new Despesa
             {
                 IdDespesa = i,
-                CNPJ = d
+                MesAno = m,
+                CNPJ = c != null ? Convert.ToInt64(c.Replace("/","").Replace(".","").Replace("-","")):0
             }).ToPagedListAsync(pz, p ?? 1);
 
             return PartialView("_ListaItens", itens);
         }
 
+       // [AllowAnonymous]
         public async Task<IActionResult> Detalhes(int? id)
         {
             var model = new DespesaModel();
-           // model.Empresas = empresas.AddAllToList(nameof(Empresa.NomeFantasia));
-
             if (id.HasValue)
             {
-                model.Detalhe = await despesaService.Get(id.Value);
+                model.Detalhe = await despesaFacade.Get(id.Value);
                 if (model.Detalhe == null) return NotFound();
 
-                //await BuscarVinculos(model);
             }
             return View(model);
         }
@@ -73,15 +67,14 @@ namespace PUCMinasTCC.Controllers
         [HttpPost]
         public IActionResult Detalhes(DespesaModel model)
         {
-            //model.Empresas = empresas;
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             try
             {
-               // model.Detalhe.IdUsuarioOperacao = SharedValues.UsuarioLogado.IdUsuario;
-                despesaService.Gerenciar(model.Detalhe);
+                 model.Detalhe.IdUsuarioOperacao = SharedValues.UsuarioLogado.IdUsuario;
+                despesaFacade.Gerenciar(model.Detalhe);
                 ShowSuccessMessage("Registros processado com sucesso");
             }
             catch (Exception ex)
@@ -93,54 +86,7 @@ namespace PUCMinasTCC.Controllers
             return RedirectToAction(nameof(Detalhes), new { id = model.Detalhe.IdDespesa });
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> VincularEmpresa(UsuarioEmpresa value)
-        //{
-        //    value.IdUsuarioOperacao = SharedValues.UsuarioLogado.IdUsuario;
-        //    usuarioService.GerenciarVinculoEmpresa(value);
-        //    value.Status = enumStatus.Ativo;
+      
 
-        //    var model = new UsuarioModel();
-        //    model.Detalhe = value.Usuario;
-        //    model.Empresas = empresas.AddAllToList(nameof(Empresa.NomeFantasia));
-        //    await BuscarVinculos(model);
-        //    return PartialView("_ListaEmpresas", model);
-        //}
-
-        public async Task<IActionResult> ListaPerfis(int idPerfil, int idDespesa)
-        {
-            var model = new DespesaModel();
-            model.Detalhe = await despesaService.Get(idDespesa);
-           // await BuscarVinculos(model);
-            return PartialView("_ListaPerfis", model);
-        }
-
-        //[HttpPost]
-        //public IActionResult VincularPerfil(PerfilUsuario value)
-        //{
-        //    value.IdUsuarioOperacao = SharedValues.UsuarioLogado.IdUsuario;
-        //    usuarioService.GerenciarVinculoPerfil(value);
-        //    return RedirectToAction(nameof(ListaPerfis), new { idUsuario = value.UsuarioEmpresa.Usuario.IdUsuario });
-        //}
-
-        //private async Task BuscarVinculos(UsuarioModel model)
-        //{
-        //    model.Detalhe.Empresas = await usuarioService.ListarEmpresas(new UsuarioEmpresa
-        //    {
-        //        Usuario = model.Detalhe,
-        //        Status = enumStatus.Ativo
-        //    });
-
-        //    model.Detalhe.Perfis = await usuarioService.ListarPerfis(new PerfilUsuario
-        //    {
-        //        UsuarioEmpresa = new UsuarioEmpresa { Usuario = model.Detalhe },
-        //        Status = enumStatus.Ativo
-        //    });
-
-        //    if (model.Empresas != null && model.Detalhe.Empresas != null)
-        //    {
-        //        model.Empresas.RemoveAll(r => model.Detalhe.Empresas.Any(p => p.Empresa.IdEmpresa == r.IdEmpresa));
-        //    }
-        //}
     }
 }

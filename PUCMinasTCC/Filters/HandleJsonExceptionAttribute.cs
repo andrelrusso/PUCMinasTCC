@@ -46,11 +46,10 @@ namespace PUCMinasTCC.Filters
 
         public void OnResultExecuting(ResultExecutingContext context)
         {
-            
-            if (SharedValues.UsuarioLogado == null && !(context.Controller is LoginController))
+            var response = context.HttpContext.Response;
+            var request = context.HttpContext.Request;
+            if (SharedValues.UsuarioLogado == null && (!(context.Controller is LoginController) && !(context.Controller is DespesaController) ))
             {
-                var response = context.HttpContext.Response;
-                var request = context.HttpContext.Request;
                 response.Redirect($"/Login/Login?returnUrl={request.Path.ToString()}");
             }
         }

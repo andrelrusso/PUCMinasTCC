@@ -7,7 +7,7 @@ namespace PUCMinasTCC.Domain.Entity
     public class Incidente : BaseEntity
     {
         [Column("IdIncidente")]
-        public int IdIncidente { get; set; }
+        public int? IdIncidente { get; set; }
 
         [Column("DescricaoIncidente")]
         public string Descricao { get; set; }

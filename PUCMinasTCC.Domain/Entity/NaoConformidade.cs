@@ -7,7 +7,7 @@ namespace PUCMinasTCC.Domain.Entity
     public class NaoConformidade:BaseEntity
     {
         [Column("IdNaoConformidade")]
-        public int IdNaoConformidade { get; set; }
+        public int? IdNaoConformidade { get; set; }
 
         [Column("DescricaoNaoConformidade")]
         public string Descricao { get; set; }
