@@ -59,8 +59,9 @@ namespace PUCMinasTCC.Controllers
 
         public async Task<IActionResult> Detalhes(int? id)
         {
+            ViewBag.propertydisable = id > 0 ? false : true;
             var model = new IncidenteModel();
-            //model.Estado = CodeUtil.PopulaComboComEnum(model.Detalhe.EstadoIncidente, enumEstadoIncidente.Todos);
+            model.Estado = CodeUtil.PopulaComboComEnum(model.Detalhe.EstadoIncidente, enumEstadoIncidente.Todos);
             model.NaoConformidades = naoConformidades.AddAllToList(nameof(NaoConformidade.Descricao));
             if (id.HasValue)
             {
@@ -74,7 +75,7 @@ namespace PUCMinasTCC.Controllers
         [HttpPost]
         public IActionResult Detalhes(IncidenteModel model)
         {
-            //model.Estado = CodeUtil.PopulaComboComEnum(model.Detalhe.EstadoIncidente, enumEstadoIncidente.Todos);
+            model.Estado = CodeUtil.PopulaComboComEnum(model.Detalhe.EstadoIncidente, enumEstadoIncidente.Todos);
             model.NaoConformidades = naoConformidades.AddAllToList(nameof(NaoConformidade.Descricao));
             if (!ModelState.IsValid)
             {

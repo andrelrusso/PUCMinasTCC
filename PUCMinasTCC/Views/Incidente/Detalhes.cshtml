@@ -40,6 +40,20 @@
                             <span asp-validation-for="Detalhe.NaoConformidade.IdNaoConformidade" class="text-danger"></span>
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Estado" class="control-label"></label>
+                            @if (ViewBag.propertydisable)
+                            {
+                                <select asp-for="Detalhe.EstadoIncidente" asp-items="Model.Estado" class="form-control" disabled></select>
+                            }
+                            else
+                            {
+                                <select asp-for="Detalhe.EstadoIncidente" asp-items="Model.Estado" class="form-control" required></select>
+                            }
+                            <span asp-validation-for="Detalhe.EstadoIncidente" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -16,14 +16,14 @@
             <div class="col-sm-2">
                 <div class="form-group">
                     <label asp-for="Filtro.MesAno" class="control-label"></label>
-                    <input asp-for="Filtro.MesAno" class="form-control" />
+                    <input asp-for="Filtro.MesAno" class="form-control" placeholder="__/____" />
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label asp-for="Filtro.CNPJ" class="control-label"></label>
                     @*<input asp-for="Filtro.CNPJ" class="form-control" />*@
-                    @Html.TextBoxFor(model => model.Filtro.CNPJ, new { @class = "form-control", @id = "cnpj" })
+                    @Html.TextBoxFor(model => model.Filtro.CNPJ, new { @class = "form-control", @id = "cnpj", @placeholder ="__.___.___/____-__" })
                 </div>
             </div>
             <div class="col">

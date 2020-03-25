@@ -38,8 +38,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label asp-for="Detalhe.MesAno" class="control-label"></label>
-                            <input asp-for="Detalhe.MesAno" class="form-control" required  />
-                         
+                            <input asp-for="Detalhe.MesAno" class="form-control" placeholder="__/____" required  />
                             <span asp-validation-for="Detalhe.MesAno" class="text-danger"></span>
                         </div>
                     </div>
@@ -52,7 +51,7 @@
                             @*@Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpjmask" })*@
                             @* @Html.TextBox("cnpj")*@
                             @*@Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpj" })*@
-                            @Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpj" })
+                            @Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpj", @placeholder ="__.___.___/____-__" })
                             <span asp-validation-for="Detalhe.CNPJ" class="text-danger"></span>
                         </div>
                     </div>

@@ -16,32 +16,32 @@
         {
             foreach (var item in Model.CurrentItens)
             {
-        <tr>
-            <td><a asp-action="Detalhes" asp-route-id="@item.IdIncidente" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
-            <td>@Html.DisplayFor(modelItem => item.IdIncidente)</td>
-            <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
-            <td>@Html.DisplayFor(modelItem => item.NaoConformidade.Descricao)</td>
+                <tr>
+                    <td><a asp-action="Detalhes" asp-route-id="@item.IdIncidente" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
+                    <td>@Html.DisplayFor(modelItem => item.IdIncidente)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NaoConformidade.Descricao)</td>
 
-            <td>
-                @if (item.EstadoIncidente == PUCMinasTCC.Domain.Enums.enumEstadoIncidente.Aberto)
-                {
-                    <span class="status text-success"><i class="fas fa-thumbs-up mr-5">Aberto</i></span>
-                }
-                else if (item.EstadoIncidente == PUCMinasTCC.Domain.Enums.enumEstadoIncidente.EmAtendimento)
-                {
-                    <span class="status text-warning"><i class="fas fa-thumbs-up mr-5">EmAtendimento</i></span>
-                }
-                else if (item.EstadoIncidente == PUCMinasTCC.Domain.Enums.enumEstadoIncidente.AguardandoAceite)
-                {
-                    <span class="status text-info"><i class="fas fa-thumbs-up mr-5">AguardandoAceite</i></span>
-                }
-                else if (item.EstadoIncidente == PUCMinasTCC.Domain.Enums.enumEstadoIncidente.Fechado)
-                {
-                    <span class="status text-danger"><i class="fas fa-thumbs-up mr-5">Fechado</i></span>
-                }
-            </td>
-            <td>@Html.DisplayFor(modelItem => item.NomeUsuario)</td>
-        </tr>
+                    <td>
+                        @if (item.EstadoIncidente == PUCMinasTCC.Domain.Enums.enumEstadoIncidente.Aberto)
+                        {
+                            <span class="status text-success"><i class="fas fa-thumbs-up mr-5">Aberto</i></span>
+                        }
+                        else if (item.EstadoIncidente == PUCMinasTCC.Domain.Enums.enumEstadoIncidente.EmAtendimento)
+                        {
+                            <span class="status text-warning"><i class="fas fa-hand-point-left mr-5">EmAtendimento</i></span>
+                        }
+                        else if (item.EstadoIncidente == PUCMinasTCC.Domain.Enums.enumEstadoIncidente.AguardandoAceite)
+                        {
+                            <span class="status text-info"><i class="fas fa-hand-point-down mr-5">AguardandoAceite</i></span>
+                        }
+                        else if (item.EstadoIncidente == PUCMinasTCC.Domain.Enums.enumEstadoIncidente.Fechado)
+                        {
+                            <span class="status text-danger"><i class="fas fa-thumbs-down mr-5">Fechado</i></span>
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.NomeUsuario)</td>
+                </tr>
             }
         }
     </tbody>
