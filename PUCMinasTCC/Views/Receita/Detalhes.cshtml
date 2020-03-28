@@ -1,0 +1,106 @@
+﻿@model ReceitaModel
+@{
+    ViewData["Title"] = "Receitas";
+}
+
+<h2>Detalhes</h2>
+@*<script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/bindings/inputmask.binding.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.phone.extensions.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>*@
+
+<script defer src="~/js/Despesa.js"></script>
+
+
+<div class="container-fluid">
+    <form asp-action="Detalhes" method="post">
+        <input type="hidden" asp-for="Detalhe.IdReceita" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label asp-for="Detalhe.IdReceita" class="control-label"></label>
+                    <input asp-for="Detalhe.IdReceita" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-geral-tab" data-toggle="tab" href="#nav-geral" role="tab" aria-controls="nav-geral" aria-selected="true">Geral</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-geral" role="tabpanel" aria-labelledby="nav-geral-tab">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Detalhe.Ano" class="control-label"></label>
+                            <input asp-for="Detalhe.Ano" class="form-control" placeholder="____" required  />
+                            <span asp-validation-for="Detalhe.Ano" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Detalhe.CNPJ" class="control-label"></label>
+                            @*<input asp-for="Detalhe.CNPJ"  class="form-control"  required />*@
+                            @*<input asp-for="Detalhe.CNPJ" placeholder="00.000.000/0000-00" data-tipo = "cnpj"  class="form-control" required />*@
+                            @*@Html.EditorFor(model => model.Detalhe.CNPJ, new { htmlAttributes = new { @class = "form-control", placeholder = "00.000.000/0000-00", data_tipo = "cnpj" } })*@
+                            @*@Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpjmask" })*@
+                            @* @Html.TextBox("cnpj")*@
+                            @*@Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpj" })*@
+                            @Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpj", @placeholder ="__.___.___/____-__" })
+                            <span asp-validation-for="Detalhe.CNPJ" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Detalhe.OrcamentoAtualziado" class="control-label"></label>
+                            <input asp-for="Detalhe.OrcamentoAtualziado" class="form-control" required />
+                            <span asp-validation-for="Detalhe.OrcamentoAtualziado" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Detalhe.ReceitaRealizada" class="control-label"></label>
+                        <input asp-for="Detalhe.ReceitaRealizada" class="form-control" required />
+                        <span asp-validation-for="Detalhe.ReceitaRealizada" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Detalhe.PorcentagemPrevisto" class="control-label"></label>
+                        <input asp-for="Detalhe.PorcentagemPrevisto" class="form-control" required />
+                        <span asp-validation-for="Detalhe.PorcentagemPrevisto" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Detalhe.ValorLancado" class="control-label"></label>
+                        <input asp-for="Detalhe.ValorLancado" class="form-control" required />
+                        <span asp-validation-for="Detalhe.ValorLancado" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <a asp-action="Index" class="btn btn-primary"><i class="fas fa-undo"></i>Voltar</a>
+                            <button type="submit" onclick="RemoveMaskAndSubmit()" class="btn btn-warning">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
