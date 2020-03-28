@@ -17,6 +17,6 @@ namespace PUCMinasTCC.Domain.Entity
         public enumOrigemNC OrigemNc { get; set; }
 
         [Column("CodStatus")]
-        public enumStatus Status { get; set; }
+        public enumStatus Status { get; set; } = enumStatus.Todos;
     }
 }

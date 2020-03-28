@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,14 +16,13 @@ namespace PUCMinasTCC.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor):base(httpContextAccessor)
+        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor, IHttpClientFactory clientFactory):base(httpContextAccessor, clientFactory)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            //SharedValues.Session = SharedValues.Session ?? HttpContext.Session;
             return View();
         }
 

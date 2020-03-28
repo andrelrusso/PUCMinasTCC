@@ -7,10 +7,11 @@ using Newtonsoft.Json;
 using PUCMinasTCC.Domain.Entity.AuthData;
 using PUCMinasTCC.Facade.Interfaces;
 using PUCMinasTCC.Models;
-using PUCMinasTCC.Utils;
+using PUCMinasTCC.Util.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace PUCMinasTCC.Controllers
         private readonly IAuthFacade authService;
         private readonly IAppSettings settings;
         public LoginController(IAuthFacade authService,
-                                IAppSettings settings, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
+                                IAppSettings settings, IHttpContextAccessor httpContextAccessor, IHttpClientFactory clientFactory) : base(httpContextAccessor, clientFactory)
         {
             this.authService = authService;
             this.settings = settings;
@@ -31,13 +32,7 @@ namespace PUCMinasTCC.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl)
         {
-            //SharedValues.Session = SharedValues.Session ?? HttpContext.Session;
-
             ViewBag.ReturnUrl = returnUrl;
-
-            //if (SharedValues.UsuarioLogado != null)
-            //    return RedirectToAction(nameof(HomeController.Index), "Home");
-            //else
             return View();
         }
 
@@ -58,7 +53,6 @@ namespace PUCMinasTCC.Controllers
                 var data = new AuthDataFromPassPhrase();
                 data.UserIdentity = model.Login;
                 data.KeyContent = model.Senha;
-                //data.SystemCode = settings.IdSistema;
 
                 var response = await authService.LogIn(JsonConvert.SerializeObject(data), settings.KeyCrypto);
                 if (response != null && response.Logged)

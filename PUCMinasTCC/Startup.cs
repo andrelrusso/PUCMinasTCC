@@ -1,13 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -43,20 +38,8 @@ namespace PUCMinasTCC
 
             services.AddSingleton(new SigningConfigurations());
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //var accessor = Configuration.GetSection(nameof(HttpContextAccessor));
-            //SharedValues.SetHttpContextAccessor(accessor);
-            //var accessor = serviceProvider.GetService<IHttpContextAccessor>()
-             //    MyStaticHelperClass.SetHttpContextAccessor(accessor);
-
-
-
-            //var tokenConfigurations = new TokenConfigurations();
-            //new ConfigureFromConfigurationOptions<TokenConfigurations>(
-            //    Configuration.GetSection(nameof(TokenConfigurations)))
-            //        .Configure(tokenConfigurations);
             var tokenConfigurations = Configuration.GetSection(nameof(TokenConfigurations));
             services.Configure<TokenConfigurations>(tokenConfigurations).AddSingleton(tokenConfigurations.Get<TokenConfigurations>());
-            //services.AddSingleton(tokenConfigurations) ;
             try
             {
                 Bootstrapper.Initialize(services, Configuration);
@@ -79,17 +62,7 @@ namespace PUCMinasTCC
                 o.IdleTimeout = TimeSpan.FromMinutes(10);
             });
 
-
-            //services.AddHttpContextAccessor(); 
-           // services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(20); options.Cookie.HttpOnly = true; }).AddDistributedMemoryCache();
-
-            //services.AddMvc()
-            //      .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-            //      .AddJsonOptions(options =>
-            //      {
-            //          options.SerializerSettings.ContractResolver
-            //              = new Newtonsoft.Json.Serialization.DefaultContractResolver();
-            //      });
+            services.AddHttpClient();
 
         }
 

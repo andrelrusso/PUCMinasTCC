@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Utils\SigningConfigurations.cs" />
+    <Compile Remove="Utils\TokenConfigurations.cs" />
+    <Compile Remove="Utils\TokenHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Usuario\_ListaEmpresas.cshtml" />
     <Content Remove="Views\Usuario\_ListaPerfis.cshtml" />
   </ItemGroup>

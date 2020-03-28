@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PUCMinasTCC.IoC;
+using PUCMinasTCC.Util.Util;
 
 namespace PUCMinasTCC.Api
 {
@@ -28,6 +29,21 @@ namespace PUCMinasTCC.Api
         {
             services.AddControllers();
 
+
+            services.AddSingleton(new SigningConfigurations());
+            var tokenConfigurations = Configuration.GetSection(nameof(TokenConfigurations));
+            services.Configure<TokenConfigurations>(tokenConfigurations).AddSingleton(tokenConfigurations.Get<TokenConfigurations>());
+
+            try
+            {
+                if (string.IsNullOrEmpty(CryptoUtils.ReadKey()))
+                    CryptoUtils.WriteKey("TGS|SICCA");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao ler/criar a chave", ex);
+            }
+
             try
             {
                 Bootstrapper.Initialize(services, Configuration);
@@ -41,10 +57,10 @@ namespace PUCMinasTCC.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+            //if (env.IsDevelopment())
+            //{
                 app.UseDeveloperExceptionPage();
-            }
+            //}
 
             app.UseHttpsRedirection();
 
@@ -55,7 +71,16 @@ namespace PUCMinasTCC.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                //endpoints.MapControllerRoute(
+                //   name: "defaultApi",
+                //   pattern: "api/{controller=Home}/{action=Index}/{id?}");
             });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+               
+            //});
         }
     }
 }

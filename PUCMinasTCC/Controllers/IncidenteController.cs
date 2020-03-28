@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,8 @@ namespace PUCMinasTCC.Controllers
     {
         private readonly IIncidenteFacade incidenteFacade;
         private IList<NaoConformidade> naoConformidades = null;
-        public IncidenteController(IIncidenteFacade incidenteFacade, INaoConformidadeFacade naoConformidadeFacade, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
+        public IncidenteController(IIncidenteFacade incidenteFacade, INaoConformidadeFacade naoConformidadeFacade, IHttpContextAccessor httpContextAccessor, IHttpClientFactory clientFactory) : 
+            base(httpContextAccessor, clientFactory)
         {
             this.incidenteFacade = incidenteFacade;
             naoConformidades = naoConformidadeFacade.ToListAsync(null).Result;

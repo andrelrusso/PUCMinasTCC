@@ -9,29 +9,23 @@ using PUCMinasTCC.Utils;
 using PUCMinasTCC.Domain.Enums;
 using PUCMinasTCC.Domain.Entity;
 using Microsoft.AspNetCore.Http;
+using System.Net.Http;
 
 namespace PUCMinasTCC.Controllers
 {
     public class UsuarioController : BaseController
     {
-        //private readonly IEmpresaService empresaService;
         private readonly IUsuarioFacade usuarioFacade;
-        private readonly IAppSettings appSettings;
-        //private IList<Empresa> empresas = null;
-        public UsuarioController(//IEmpresaService empresaService,
+        public UsuarioController(
                                 IUsuarioFacade usuarioFacade,
-                                IAppSettings appSettings, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
-       
+                                IHttpContextAccessor httpContextAccessor, IHttpClientFactory clientFactory) : base(httpContextAccessor, clientFactory)
+
         {
-            //this.empresaService = empresaService;
             this.usuarioFacade = usuarioFacade;
-            this.appSettings = appSettings;
-            //empresas = empresaService.ToListAsync(null).Result;
         }
         public async Task<IActionResult> Index()
         {
             var model = new UsuarioModel();
-           // model.Empresas = empresas.AddAllToList(nameof(Empresa.NomeFantasia));
             model.Status = CodeUtil.PopulaComboComEnum(model.Filtro.Status);
             model.Itens = await usuarioFacade.ToListAsync(null).ToPagedListAsync(PAGE_SIZE, 1);
             return View(model);
@@ -62,14 +56,11 @@ namespace PUCMinasTCC.Controllers
         {
             var model = new UsuarioModel();
             model.Status = CodeUtil.PopulaComboComEnum(model.Detalhe.Status, enumStatus.Todos);
-           // model.Empresas = empresas.AddAllToList(nameof(Empresa.NomeFantasia));
 
             if (id.HasValue)
             {
                 model.Detalhe = await usuarioFacade.Get(id.Value);
                 if (model.Detalhe == null) return NotFound();
-
-                //await BuscarVinculos(model);
             }
             return View(model);
         }
@@ -77,7 +68,6 @@ namespace PUCMinasTCC.Controllers
         [HttpPost]
         public IActionResult Detalhes(UsuarioModel model)
         {
-            //model.Empresas = empresas;
             model.Status = CodeUtil.PopulaComboComEnum(model.Detalhe.Status, enumStatus.Todos);
             if (!ModelState.IsValid)
             {
@@ -97,55 +87,5 @@ namespace PUCMinasTCC.Controllers
 
             return RedirectToAction(nameof(Detalhes), new { id = model.Detalhe.IdUsuario });
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> VincularEmpresa(UsuarioEmpresa value)
-        //{
-        //    value.IdUsuarioOperacao = SharedValues.UsuarioLogado.IdUsuario;
-        //    usuarioService.GerenciarVinculoEmpresa(value);
-        //    value.Status = enumStatus.Ativo;
-
-        //    var model = new UsuarioModel();
-        //    model.Detalhe = value.Usuario;
-        //    model.Empresas = empresas.AddAllToList(nameof(Empresa.NomeFantasia));
-        //    await BuscarVinculos(model);
-        //    return PartialView("_ListaEmpresas", model);
-        //}
-
-        //public async Task<IActionResult> ListaPerfis(int idPerfil, int idUsuario)
-        //{
-        //    var model = new UsuarioModel();
-        //    model.Detalhe = await usuarioFacade.Get(idUsuario);
-        //   // await BuscarVinculos(model);
-        //    return PartialView("_ListaPerfis", model);
-        //}
-
-        //[HttpPost]
-        //public IActionResult VincularPerfil(PerfilUsuario value)
-        //{
-        //    value.IdUsuarioOperacao = SharedValues.UsuarioLogado.IdUsuario;
-        //    usuarioService.GerenciarVinculoPerfil(value);
-        //    return RedirectToAction(nameof(ListaPerfis), new { idUsuario = value.UsuarioEmpresa.Usuario.IdUsuario });
-        //}
-
-        //private async Task BuscarVinculos(UsuarioModel model)
-        //{
-        //    model.Detalhe.Empresas = await usuarioService.ListarEmpresas(new UsuarioEmpresa
-        //    {
-        //        Usuario = model.Detalhe,
-        //        Status = enumStatus.Ativo
-        //    });
-
-        //    model.Detalhe.Perfis = await usuarioService.ListarPerfis(new PerfilUsuario
-        //    {
-        //        UsuarioEmpresa = new UsuarioEmpresa { Usuario = model.Detalhe },
-        //        Status = enumStatus.Ativo
-        //    });
-
-        //    if (model.Empresas != null && model.Detalhe.Empresas != null)
-        //    {
-        //        model.Empresas.RemoveAll(r => model.Detalhe.Empresas.Any(p => p.Empresa.IdEmpresa == r.IdEmpresa));
-        //    }
-        //}
     }
 }

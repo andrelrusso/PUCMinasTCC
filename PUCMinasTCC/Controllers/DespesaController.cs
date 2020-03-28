@@ -10,6 +10,7 @@ using PUCMinasTCC.Domain.Enums;
 using PUCMinasTCC.Domain.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using System.Net.Http;
 
 namespace PUCMinasTCC.Controllers
 {
@@ -17,7 +18,7 @@ namespace PUCMinasTCC.Controllers
     {
         private readonly IDespesaFacade despesaFacade;
         public DespesaController(
-                                IDespesaFacade despesaFacade, IHttpContextAccessor httpContextAccessor):base(httpContextAccessor)
+                                IDespesaFacade despesaFacade, IHttpContextAccessor httpContextAccessor, IHttpClientFactory clientFactory) :base(httpContextAccessor, clientFactory)
         {
             this.despesaFacade = despesaFacade;
         }

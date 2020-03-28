@@ -24,7 +24,7 @@ namespace PUCMinasTCC.Domain.Entity
         public string Email { get; set; }
 
         [Column("CodStatus")]
-        public enumStatus Status { get; set; }
+        public enumStatus Status { get; set; } = enumStatus.Todos;
 
         [Column("IdUsuarioCadastro")]
         public override int IdUsuarioOperacao { get => base.IdUsuarioOperacao; set => base.IdUsuarioOperacao = value; }
