@@ -48,10 +48,17 @@ namespace PUCMinasTCC.Filters
         {
             var response = context.HttpContext.Response;
             var request = context.HttpContext.Request;
-            if (SharedValues.UsuarioLogado == null && (!(context.Controller is LoginController) && !(context.Controller is DespesaController) ))
+            if (SharedValues.UsuarioLogado == null && !(context.Controller is LoginController) && !(context.Controller is DespesaController) && !(context.Controller is ReceitaController))
             {
                 response.Redirect($"/Login/Login?returnUrl={request.Path.ToString()}");
+                return;
             }
+
+            if (SharedValues.UsuarioLogado?.PerfilUsuario != Domain.Enums.enumPerfilUsuario.Administrador && (request.Path.ToString().ToLower().Contains("detalhes")))
+            {
+                throw new Exception("Perfil de usuário não permitido para este acesso");
+            }
+
         }
     }
 }

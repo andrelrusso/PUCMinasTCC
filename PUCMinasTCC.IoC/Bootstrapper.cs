@@ -17,12 +17,14 @@ namespace PUCMinasTCC.IoC
             services.AddTransient<IAuthFacade, AuthFacade>();
             services.AddTransient<IIncidenteFacade, IncidenteFacade>();
             services.AddTransient<IDespesaFacade, DespesaFacade>();
+            services.AddTransient<IReceitaFacade, ReceitaFacade>();
             services.AddTransient<INaoConformidadeFacade, NaoConformidadeFacade>();
 
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IIncidenteRepository, IncidenteRepository>();
             services.AddTransient<IDespesaRepository, DespesaRepository>();
+            services.AddTransient<IReceitaRepository, ReceitaRepository>();
             services.AddTransient<INaoConformidadeRepository, NaoConformidadeRepository>();
             services.AddSingleton<IAppSettings, AppSettings>();
         }

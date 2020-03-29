@@ -32,7 +32,15 @@
                 </div>
             </div>
             <div class="col">
-                <a asp-action="Detalhes" class="btn btn-success"><i class="fas fa-plus"></i>Adicionar</a>
+                @if (SharedValues.UsuarioLogado != null && SharedValues.UsuarioLogado.PerfilUsuario == PUCMinasTCC.Domain.Enums.enumPerfilUsuario.Administrador)
+                {
+                    <a asp-action="Detalhes" class="btn btn-success"><i class="fas fa-plus"></i>Adicionar</a>
+                }
+                else
+                {
+                    <a asp-action="Detalhes" class="btn btn-success disabled"><i class="fas fa-plus"></i>Adicionar</a>
+
+                }
                 <button type="button" class="btn btn-warning" onclick="Pesquisar('@Url.Action("Pesquisar")')"><i class="fas fa-search"></i> Pesquisar</button>
             </div>
         </div>

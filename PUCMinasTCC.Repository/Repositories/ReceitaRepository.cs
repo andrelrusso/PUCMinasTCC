@@ -24,7 +24,7 @@ namespace PUCMinasTCC.Repository.Repositories
             context.AddParameter("IdReceita", value.IdReceita, p => p != 0);
             context.AddParameter("Ano", value.Ano, p => !string.IsNullOrWhiteSpace(p));
             context.AddParameter("CNPJ", value.CNPJ, p => p != 0);
-            context.AddParameter("OrçamentoAtualziado", value.OrcamentoAtualziado, p => p != 0);
+            context.AddParameter("OrcamentoAtualizado", value.OrcamentoAtualizado, p => p != 0);
             context.AddParameter("ReceitaRealizada", value.ReceitaRealizada, p => p != 0);
             context.AddParameter("PorcentagemPrevisto", value.PorcentagemPrevisto, p => p != 0);
             context.AddParameter("ValorLancado", value.ValorLancado, p => p != 0);

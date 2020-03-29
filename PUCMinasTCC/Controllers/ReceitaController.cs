@@ -10,14 +10,14 @@ using PUCMinasTCC.Domain.Enums;
 using PUCMinasTCC.Domain.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using System.Net.Http;
 
 namespace PUCMinasTCC.Controllers
 {
     public class ReceitaController : BaseController
     {
         private readonly IReceitaFacade receitaFacade;
-        public ReceitaController(
-                                IReceitaFacade receitaFacade, IHttpContextAccessor httpContextAccessor):base(httpContextAccessor)
+        public ReceitaController(IReceitaFacade receitaFacade, IHttpContextAccessor httpContextAccessor, IHttpClientFactory clientFactory) : base(httpContextAccessor, clientFactory)
         {
             this.receitaFacade = receitaFacade;
         }
@@ -51,7 +51,6 @@ namespace PUCMinasTCC.Controllers
             return PartialView("_ListaItens", itens);
         }
 
-       // [AllowAnonymous]
         public async Task<IActionResult> Detalhes(int? id)
         {
             var model = new ReceitaModel();

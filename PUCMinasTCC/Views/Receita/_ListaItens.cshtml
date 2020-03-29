@@ -1,16 +1,16 @@
-﻿@model PagedList<Despesa>
+﻿@model PagedList<Receita>
 
 <table class="table">
     <thead>
         <tr>
             <th></th>
             <th>Id</th>
-            <th>Mês/Ano</th>
+            <th>Ano</th>
             <th>CNPJ</th>
-            <th>ValorEmpenhado</th>
-            <th>ValorLiquidado</th>
-            <th>ValorPago</th>
-            <th>ValorRestosAPagarPagos</th>
+            <th>OrcamentoAtualizado</th>
+            <th>ReceitaRealizada</th>
+            <th>PorcentagemPrevisto</th>
+            <th>ValorLancado</th>
         </tr>
     </thead>
     <tbody>
@@ -22,20 +22,20 @@
                     <td>
                         @if (SharedValues.UsuarioLogado != null)
                         {
-                            <a asp-action="Detalhes" asp-route-id="@item.IdDespesa" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a>
+                            <a asp-action="Detalhes" asp-route-id="@item.IdReceita" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a>
                         }
                         else
                         {
-                            <a asp-action="Detalhes" asp-route-id="@item.IdDespesa" class="btn btn-info disabled" aria-disabled="true"><i class="fas fa-edit"></i>Editar</a>
+                            <a asp-action="Detalhes" asp-route-id="@item.IdReceita" class="btn btn-info disabled" aria-disabled="true"><i class="fas fa-edit"></i>Editar</a>
                         }
                     </td>
-                    <td>@Html.DisplayFor(modelItem => item.IdDespesa)</td>
-                    <td>@Html.DisplayFor(modelItem => item.MesAno)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IdReceita)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Ano)</td>
                     <td>@Html.DisplayFor(modelItem => item.CNPJ)</td>
-                    <td>@Html.DisplayFor(modelItem => item.ValorEmpenhado)</td>
-                    <td>@Html.DisplayFor(modelItem => item.ValorLiquidado)</td>
-                    <td>@Html.DisplayFor(modelItem => item.ValorPago)</td>
-                    <td>@Html.DisplayFor(modelItem => item.ValorRestosAPagarPagos)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OrcamentoAtualizado)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ReceitaRealizada)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PorcentagemPrevisto)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ValorLancado)</td>
                 </tr>
             }
         }

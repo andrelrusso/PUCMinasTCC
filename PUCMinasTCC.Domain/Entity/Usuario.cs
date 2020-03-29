@@ -23,6 +23,9 @@ namespace PUCMinasTCC.Domain.Entity
         public DateTime ValidadeSenha { get; set; }
         public string Email { get; set; }
 
+        [Column("IdPerfilUsuario")]
+        public enumPerfilUsuario PerfilUsuario { get; set; } = enumPerfilUsuario.Todos;
+
         [Column("CodStatus")]
         public enumStatus Status { get; set; } = enumStatus.Todos;
 

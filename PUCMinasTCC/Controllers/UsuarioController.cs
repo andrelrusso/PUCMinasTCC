@@ -27,6 +27,7 @@ namespace PUCMinasTCC.Controllers
         {
             var model = new UsuarioModel();
             model.Status = CodeUtil.PopulaComboComEnum(model.Filtro.Status);
+            model.Perfis = CodeUtil.PopulaComboComEnum(model.Filtro.PerfilUsuario);
             model.Itens = await usuarioFacade.ToListAsync(null).ToPagedListAsync(PAGE_SIZE, 1);
             return View(model);
         }
@@ -56,6 +57,7 @@ namespace PUCMinasTCC.Controllers
         {
             var model = new UsuarioModel();
             model.Status = CodeUtil.PopulaComboComEnum(model.Detalhe.Status, enumStatus.Todos);
+            model.Perfis = CodeUtil.PopulaComboComEnum(model.Filtro.PerfilUsuario, enumPerfilUsuario.Todos);
 
             if (id.HasValue)
             {
@@ -69,6 +71,7 @@ namespace PUCMinasTCC.Controllers
         public IActionResult Detalhes(UsuarioModel model)
         {
             model.Status = CodeUtil.PopulaComboComEnum(model.Detalhe.Status, enumStatus.Todos);
+            model.Perfis = CodeUtil.PopulaComboComEnum(model.Filtro.PerfilUsuario, enumPerfilUsuario.Todos);
             if (!ModelState.IsValid)
             {
                 return View(model);

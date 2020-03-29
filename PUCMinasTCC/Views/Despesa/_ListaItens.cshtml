@@ -20,7 +20,7 @@
             {
                 <tr>
                     <td>
-                        @if (SharedValues.UsuarioLogado != null)
+                        @if (SharedValues.UsuarioLogado != null && SharedValues.UsuarioLogado.PerfilUsuario == PUCMinasTCC.Domain.Enums.enumPerfilUsuario.Administrador)
                         {
                             <a asp-action="Detalhes" asp-route-id="@item.IdDespesa" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a>
                         }

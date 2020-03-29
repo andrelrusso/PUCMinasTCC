@@ -48,6 +48,7 @@ namespace PUCMinasTCC.Controllers
 
             ModelState.Clear();
 
+
             try
             {
                 var data = new AuthDataFromPassPhrase();

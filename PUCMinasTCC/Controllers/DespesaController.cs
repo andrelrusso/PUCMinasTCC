@@ -52,7 +52,6 @@ namespace PUCMinasTCC.Controllers
             return PartialView("_ListaItens", itens);
         }
 
-       // [AllowAnonymous]
         public async Task<IActionResult> Detalhes(int? id)
         {
             var model = new DespesaModel();

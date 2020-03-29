@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Receita";
 }
-<script defer src="~/js/Despesa.js"></script>
+<script defer src="~/js/Receita.js"></script>
 <div class="card border-primary">
     <div class="card-header">@ViewData["Title"]</div>
     <div class="card-body">
@@ -29,7 +29,7 @@
             <div class="col">
 
                 <div class="col">
-                    @if (SharedValues.UsuarioLogado != null)
+                    @if (SharedValues.UsuarioLogado != null && SharedValues.UsuarioLogado.PerfilUsuario == PUCMinasTCC.Domain.Enums.enumPerfilUsuario.Administrador)
                     {
                     <a asp-action="Detalhes" class="btn btn-success"><i class="fas fa-plus"></i>Adicionar</a>
                     }

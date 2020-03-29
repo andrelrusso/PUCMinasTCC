@@ -4,16 +4,7 @@
 }
 
 <h2>Detalhes</h2>
-@*<script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/bindings/inputmask.binding.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.phone.extensions.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>*@
-
-<script defer src="~/js/Despesa.js"></script>
-
+<script defer src="~/js/Receita.js"></script>
 
 <div class="container-fluid">
     <form asp-action="Detalhes" method="post">
@@ -45,21 +36,15 @@
                     <div class="col">
                         <div class="form-group">
                             <label asp-for="Detalhe.CNPJ" class="control-label"></label>
-                            @*<input asp-for="Detalhe.CNPJ"  class="form-control"  required />*@
-                            @*<input asp-for="Detalhe.CNPJ" placeholder="00.000.000/0000-00" data-tipo = "cnpj"  class="form-control" required />*@
-                            @*@Html.EditorFor(model => model.Detalhe.CNPJ, new { htmlAttributes = new { @class = "form-control", placeholder = "00.000.000/0000-00", data_tipo = "cnpj" } })*@
-                            @*@Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpjmask" })*@
-                            @* @Html.TextBox("cnpj")*@
-                            @*@Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpj" })*@
                             @Html.TextBoxFor(model => model.Detalhe.CNPJ, new { @class = "form-control", @id = "cnpj", @placeholder ="__.___.___/____-__" })
                             <span asp-validation-for="Detalhe.CNPJ" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="Detalhe.OrcamentoAtualziado" class="control-label"></label>
-                            <input asp-for="Detalhe.OrcamentoAtualziado" class="form-control" required />
-                            <span asp-validation-for="Detalhe.OrcamentoAtualziado" class="text-danger"></span>
+                            <label asp-for="Detalhe.OrcamentoAtualizado" class="control-label"></label>
+                            <input asp-for="Detalhe.OrcamentoAtualizado" class="form-control" required />
+                            <span asp-validation-for="Detalhe.OrcamentoAtualizado" class="text-danger"></span>
                         </div>
                     </div>
                 </div>

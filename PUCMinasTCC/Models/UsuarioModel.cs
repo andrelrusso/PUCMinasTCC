@@ -9,6 +9,7 @@ namespace PUCMinasTCC.Models
         public int IdEmpresaFiltro { get; set; }
 
         public SelectList Status { get; set; }
+        public SelectList Perfis { get; set; }
         public UsuarioModel()
         {
             Filtro = new Usuario { Status = enumStatus.Todos }; 

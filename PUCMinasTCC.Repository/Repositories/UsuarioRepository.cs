@@ -30,6 +30,7 @@ namespace PUCMinasTCC.Repository.Repositories
             context.AddParameter("CPF", value.CPF);
             context.AddParameter("Email", value.Email, p => !string.IsNullOrWhiteSpace(p));
             context.AddParameter("CodStatus", (int)value.Status);
+            context.AddParameter("IdPerfilUsuario", (int)value.PerfilUsuario);
             context.AddParameter("IdUsuarioOperacao", value.IdUsuarioOperacao);
             value.IdUsuario = context.ExecuteScalar<int>();
         }
@@ -53,7 +54,7 @@ namespace PUCMinasTCC.Repository.Repositories
                 context.AddParameter("CPF", filtro.CPF, p => p != 0);
                 context.AddParameter("Email", filtro.Email, p => !string.IsNullOrWhiteSpace(p));
                 context.AddParameter("CodStatus", (int)filtro.Status, p => p != (int)enumStatus.Todos);
-                context.AddParameter("IdPerfilSistema", idPerfilSistema, p => p.HasValue);
+                context.AddParameter("IdPerfilUsuario", idPerfilSistema, p => p != (int)enumPerfilUsuario.Todos);
             }
             return await context.ListAsync<Usuario>();
         }

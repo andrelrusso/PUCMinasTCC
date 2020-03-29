@@ -17,7 +17,16 @@
             foreach (var item in Model.CurrentItens)
             {
                 <tr>
-                    <td><a asp-action="Detalhes" asp-route-id="@item.IdIncidente" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a></td>
+                    <td>
+                        @if (SharedValues.UsuarioLogado != null && SharedValues.UsuarioLogado.PerfilUsuario == PUCMinasTCC.Domain.Enums.enumPerfilUsuario.Administrador)
+                        {
+                            <a asp-action="Detalhes" asp-route-id="@item.IdIncidente" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Detalhes" asp-route-id="@item.IdIncidente" class="btn btn-info disabled" aria-disabled="true"><i class="fas fa-edit"></i>Editar</a>
+                        }
+                    </td>
                     <td>@Html.DisplayFor(modelItem => item.IdIncidente)</td>
                     <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
                     <td>@Html.DisplayFor(modelItem => item.NaoConformidade.Descricao)</td>
