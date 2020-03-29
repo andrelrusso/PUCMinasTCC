@@ -10,6 +10,6 @@ namespace PUCMinasTCC.Domain.Repository
     {
         Task<Despesa> Get(int id);
         Task<IList<Despesa>> ToListAsync(Despesa filtro);
-        void Gerenciar(Despesa value);
+        void Gerenciar(Despesa value); 
     }
 }
