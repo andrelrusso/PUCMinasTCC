@@ -18,7 +18,7 @@
             <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" asp-append-version="true" />
         </environment>*@
 
-   
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
@@ -28,17 +28,27 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a class="navbar-brand" asp-area="" asp-action="Index" asp-controller="Home">@SharedValues.TitleInitials?.ToUpper()</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item"><a class="nav-link" asp-controller="Incidente" asp-action="Index">Incidentes</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="NaoConformidade" asp-action="Index">Não Conformidades</a></li>
+                @if (SharedValues.UsuarioLogado != null)
+                {
+                    <li class="nav-item"><a class="nav-link" asp-controller="Incidente" asp-action="Index">Incidentes</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="NaoConformidade" asp-action="Index">Não Conformidades</a></li>
+                }
                 <li class="nav-item"><a class="nav-link" asp-controller="Despesa" asp-action="Index">Despesas</a></li>
                 <li class="nav-item"><a class="nav-link" asp-controller="Receita" asp-action="Index">Receitas</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Index">Usuários</a></li>
+                @if (SharedValues.UsuarioLogado != null)
+                {
+                    <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Index">Usuários</a></li>
+                }
             </ul>
-            <a class="btn btn-warning mr-1" asp-controller="Login" asp-action="@nameof(LoginController.AlterarSenha)">@SharedValues.UsuarioLogado?.Nome<i class="ml-1 fas fa-user"></i></a>
-            <form class="form-inline my-2 my-lg-0" asp-action="Logout" asp-controller="Login" method="post">
-                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><i class="fas fa-"></i>Sair</button>
-            </form>
-        </div>
+            @if (SharedValues.UsuarioLogado != null)
+            {
+                <a class="btn btn-warning mr-1" asp-controller="Login" asp-action="@nameof(LoginController.AlterarSenha)">@SharedValues.UsuarioLogado?.Nome<i class="ml-1 fas fa-user"></i></a>
+                <form class="form-inline my-2 my-lg-0" asp-action="Logout" asp-controller="Login" method="post">
+                    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><i class="fas fa-"></i>Sair</button>
+                </form>
+            }
+            </div>
+            
     </nav>
 
     <div class="container-fluid body-content">
